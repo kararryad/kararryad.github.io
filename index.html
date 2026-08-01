@@ -1,84 +1,159 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ar" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - البوابة الرئيسية</title>
+    <title>قاعه رياض - مستودع الأدوات</title>
     <style>
-        body {
+        /* إعدادات عامة وقوية */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #0f0f0f;
-            color: #ffffff;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            text-align: center;
+            padding: 30px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 40%);
         }
-        .logo {
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
             font-size: 3.5rem;
-            font-weight: bold;
             color: #cc0000;
-            text-shadow: 0 0 20px rgba(204, 0, 0, 0.6);
-            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
             letter-spacing: 2px;
         }
-        .subtitle {
-            font-size: 1.5rem;
-            color: #dddddd;
-            margin-bottom: 10px;
+
+        .header p {
+            color: #888;
+            margin-top: 10px;
+            font-size: 1.1rem;
         }
-        .number-box {
-            background-color: #222;
-            padding: 12px 30px;
-            border-radius: 30px;
-            border: 1px solid #cc0000;
-            font-weight: bold;
-            color: #cc0000;
-            font-size: 1.3rem;
-            display: inline-block;
-            margin: 15px 0 30px 0;
+
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            width: 100%;
         }
-        .btn {
-            background-color: #1e1e1e;
-            border: 1px solid #cc0000;
-            padding: 15px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: bold;
+
+        /* بطاقة الأداة */
+        .tool-card {
+            background: #181818;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 25px;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            display: inline-block;
         }
-        .btn:hover {
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: #cc0000;
+            box-shadow: 0 12px 25px rgba(204, 0, 0, 0.2);
+        }
+
+        .tool-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .download-btn {
             background-color: #cc0000;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.2s;
+            align-self: flex-start;
+            border: none;
+            cursor: pointer;
         }
+
+        .download-btn:hover {
+            background-color: #ff1a1a;
+            box-shadow: 0 0 15px rgba(204, 0, 0, 0.5);
+        }
+
         .footer {
-            margin-top: 50px;
+            margin-top: 60px;
             color: #444;
             font-size: 0.9rem;
             border-top: 1px solid #222;
             padding-top: 20px;
-            width: 80%;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="logo">قاعه رياض</div>
-    <div class="subtitle">مرحباً بكم في بوابتي الخاصة</div>
-    <div class="number-box">📞 07736663121</div>
-    
-    <br>
-    <!-- زر الدخول للموقع المنسوخ والمعدل -->
-    <a href="https://kararryad.github.io/nightkinghost.com/index.html" class="btn">🚀 الدخول إلى المحتوى</a>
+    <div class="header">
+        <h1>⚙️ قاعه رياض</h1>
+        <p>مستودع الأدوات والملفات الخاصة</p>
+    </div>
+
+    <div class="tools-container">
+        
+        <!-- الأداة الأولى: مثال (GoldHEN) -->
+        <div class="tool-card">
+            <div class="tool-title">💀 GoldHEN v2.4b18</div>
+            <div class="tool-desc">أحدث إصدار من باكيت التعديل (Payload) لنسخة PS4 6.72 و 9.00.</div>
+            <!-- قم بتغيير الرابط إلى ملفك الفعلي -->
+            <a href="https://kararryad.github.io/files/goldhen.bin" class="download-btn" download>📥 تحميل الملف</a>
+        </div>
+
+        <!-- الأداة الثانية: مثال (سكربت) -->
+        <div class="tool-card">
+            <div class="tool-title">🐍 Python Script</div>
+            <div class="tool-desc">سكربت تحليل شبكات مخصص للاستخدام الداخلي.</div>
+            <a href="https://kararryad.github.io/files/script.py" class="download-btn" download>📥 تحميل السكربت</a>
+        </div>
+
+        <!-- الأداة الثالثة: مثال (أداة أخرى) -->
+        <div class="tool-card">
+            <div class="tool-title">📂 أداة مخصصة</div>
+            <div class="tool-desc">وصف مختصر للأداة التي تريد نشرها.</div>
+            <a href="https://kararryad.github.io/files/tool.zip" class="download-btn" download>📥 تنزيل الحزمة</a>
+        </div>
+
+        <!-- يمكنك نسخ ولصق قالب البطاقة (div class="tool-card") لإضافة أدوات جديدة -->
+
+    </div>
 
     <div class="footer">
         &copy; 2026 قاعه رياض. جميع الحقوق محفوظة.
