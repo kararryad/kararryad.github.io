@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad | Dexter</title>
+    <title>kararryad | PS4 Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Cairo', sans-serif;
-            position: relative;
             overflow: hidden;
+            position: relative;
         }
 
-        /* صورة ثابتة لديكستر مورغان (جودة عالية ولكن حجم معقول) */
+        /* صورة ديكستر مورغان ثابتة */
         .bg-layer {
             position: fixed;
             top: 0; left: 0;
@@ -26,26 +25,24 @@
             background-image: url('https://m.media-amazon.com/images/M/MV5BMTU3MzI0ODM2Nl5BMl5BanBnXkFtZTgwMDc1MzAyODE@._V1_.jpg');
             background-size: cover;
             background-position: center 30%;
-            filter: brightness(0.6) saturate(1.1);
+            filter: brightness(0.5);
             z-index: -2;
         }
 
-        /* طبقة داكنة لتوضيح النص */
         .overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             z-index: -1;
         }
 
         .card {
-            background: rgba(10, 10, 10, 0.75);
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(6px);
             padding: 40px 35px;
             border-radius: 20px;
-            width: 100%;
-            max-width: 550px;
+            width: 100%; max-width: 550px;
             text-align: center;
             border: 1px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.8);
@@ -57,7 +54,6 @@
             color: #FFD700;
             text-shadow: 0 0 20px #FFD700, 0 4px 0 #996515;
             margin: 10px 0;
-            letter-spacing: 2px;
         }
 
         .phone-number {
@@ -83,12 +79,9 @@
             border-radius: 15px;
             cursor: pointer;
             box-shadow: 0 0 20px #FFD700;
-            transition: 0.2s;
         }
 
-        .launch-btn:active {
-            transform: scale(0.95);
-        }
+        .launch-btn:active { transform: scale(0.95); }
 
         .transition-screen {
             display: none;
@@ -120,7 +113,6 @@
     </style>
 </head>
 <body>
-    <!-- صورة خلفية ثابتة -->
     <div class="bg-layer"></div>
     <div class="overlay"></div>
 
@@ -131,16 +123,15 @@
     </div>
 
     <div id="transition" class="transition-screen">
-        <h2>EXECUTING</h2>
+        <h2>جاري التحميل</h2>
         <div class="loader"></div>
-        <p style="color:#aaa; margin-top:10px;">جاري تجهيز البيئة...</p>
     </div>
 
     <script>
         function activateLaunch() {
             document.getElementById('transition').style.display = 'flex';
             setTimeout(() => {
-                window.open('https://w90008.github.io/6/', '_blank');
+                window.open('https://zecoxao.github.io/ntfonto/', '_blank');
                 document.getElementById('transition').style.display = 'none';
             }, 2500);
         }
