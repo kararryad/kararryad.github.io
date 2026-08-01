@@ -1,69 +1,112 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad</title>
+    <title>kararryad | Prof</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background: #0a0a0a;
+            background: #050505;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Cairo', sans-serif;
             padding: 20px;
-            text-align: center;
+            position: relative;
+        }
+
+        /* خلفية ناعمة جداً */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.05), transparent 60%);
+            z-index: -1;
+            animation: moveGlow 10s infinite alternate;
+        }
+
+        @keyframes moveGlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(5%, 5%); }
         }
 
         .card {
-            background: #111;
-            padding: 40px;
-            border-radius: 20px;
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 50px 40px;
             width: 100%;
-            max-width: 500px;
-            border: 2px solid #FFD700;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 80px rgba(255, 215, 0, 0.02);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.1);
         }
 
         .hero-name {
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             font-weight: 900;
-            color: #FFD700;
-            text-shadow: 0 0 20px #FFD700, 0 0 40px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #FFD700, #ffc107, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 10px 0;
-            text-transform: uppercase;
+            letter-spacing: 2px;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
         }
 
         .phone-number {
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #aaa;
-            margin-bottom: 30px;
+            color: #e0e0e0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 30px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            letter-spacing: 1px;
         }
 
         .launch-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: #FFD700;
             color: #000;
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 900;
             border: none;
-            border-radius: 10px;
+            border-radius: 16px;
             cursor: pointer;
-            box-shadow: 0 0 20px #FFD700;
-            text-transform: uppercase;
-            transition: 0.2s;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s ease;
+            font-family: 'Cairo', sans-serif;
         }
 
         .launch-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
 
+        .launch-btn:hover {
+            background: #fff0a0;
+        }
+
+        /* شاشة الانتقال الاحترافية */
         .transition-screen {
             display: none;
             position: fixed;
@@ -78,27 +121,19 @@
         }
 
         .transition-screen h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             letter-spacing: 5px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .transition-screen .loader {
-            width: 60px; height: 60px;
-            border: 6px solid #222;
-            border-top: 6px solid #FFD700;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .transition-screen p {
+            color: #888;
+            font-size: 1.2rem;
         }
 
         @media (max-width: 600px) {
-            .hero-name { font-size: 3.5rem; }
-            .launch-btn { font-size: 1.5rem; }
+            .hero-name { font-size: 4rem; }
+            .phone-number { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -106,13 +141,14 @@
     <div class="card">
         <div class="hero-name">kararryad</div>
         <div class="phone-number">07736663121</div>
-        <button class="launch-btn" onclick="activateLaunch()">تشغيل النظام</button>
+        <button class="launch-btn" onclick="activateLaunch()">
+            <span>▶</span> فتح المنصة
+        </button>
     </div>
 
     <div id="transition" class="transition-screen">
-        <h2>EXECUTING</h2>
-        <div class="loader"></div>
-        <p style="color:#aaa; margin-top:15px;">جاري تحميل الأداة...</p>
+        <h2>جاري التحميل</h2>
+        <p>يتم تجهيز بيئة التشغيل...</p>
     </div>
 
     <script>
@@ -121,7 +157,7 @@
             setTimeout(() => {
                 window.open('https://w90008.github.io/6/', '_blank');
                 document.getElementById('transition').style.display = 'none';
-            }, 3000);
+            }, 2500);
         }
     </script>
 </body>
