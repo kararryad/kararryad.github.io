@@ -24,25 +24,14 @@
             padding: 30px;
             box-shadow: 0 0 40px rgba(204, 0, 0, 0.1);
         }
-        
         .header {
             text-align: center;
             border-bottom: 1px solid #2a2a2a;
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-        .header .logo {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #cc0000;
-            text-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
-            letter-spacing: 2px;
-        }
-        .header .sub {
-            color: #777;
-            margin-top: 10px;
-            font-size: 1.1rem;
-        }
+        .header .logo { font-size: 3.5rem; font-weight: 900; color: #cc0000; text-shadow: 0 0 20px rgba(204,0,0,0.4); letter-spacing: 2px; }
+        .header .sub { color: #777; margin-top: 10px; font-size: 1.1rem; }
         .contact-box {
             display: inline-block;
             background: #1a1a1a;
@@ -53,7 +42,6 @@
             font-size: 1.1rem;
             color: #cc0000;
         }
-
         .console-box {
             background: #0d0d0d;
             border: 1px solid #2a2a2a;
@@ -95,67 +83,39 @@
             background: #cc0000;
             border-color: #cc0000;
             transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(204,0,0,0.3);
         }
-        .btn-tool:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: #222;
-            border-color: #333;
-            transform: none;
-            box-shadow: none;
-        }
+        .btn-tool:disabled { opacity: 0.5; cursor: not-allowed; background: #222; transform: none; box-shadow: none; }
 
-        .footer {
-            margin-top: 30px;
-            border-top: 1px solid #2a2a2a;
-            padding-top: 20px;
-            text-align: center;
-        }
-        .social-links a {
-            display: inline-block;
-            margin: 0 5px;
-            color: #aaa;
-            text-decoration: none;
-            background: #1a1a1a;
-            padding: 8px 15px;
-            border-radius: 30px;
-            border: 1px solid #2a2a2a;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-        .social-links a:hover {
-            color: #fff;
-            border-color: #cc0000;
-        }
+        .footer { margin-top: 30px; border-top: 1px solid #2a2a2a; padding-top: 20px; text-align: center; }
+        .social-links a { display: inline-block; margin: 0 5px; color: #aaa; text-decoration: none; background: #1a1a1a; padding: 8px 15px; border-radius: 30px; border: 1px solid #2a2a2a; transition: 0.3s; }
+        .social-links a:hover { color: #fff; border-color: #cc0000; }
         .visitor-count { margin-top: 15px; color: #444; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="header">
             <div class="logo">⚡ قاعه رياض</div>
-            <div class="sub">مستودع أدوات PS4 الشامل (6.72 - 11.00)</div>
+            <div class="sub">مستودع أدوات PS4 الشامل (6.72 - 11.02)</div>
             <div class="contact-box">📞 07736663121</div>
         </div>
 
         <div class="console-box" id="console">
-            <div class="line info">[SYSTEM] تم تحميل لوحة التحكم بنجاح.</div>
-            <div class="line info">[SYSTEM] اختر نسخة جهازك واضغط للحقن.</div>
-            <div class="line info">[SYSTEM] ملاحظة: بعد الحقن، اضغط L1+L2+Options لفتح القائمة.</div>
+            <div class="line info">[SYSTEM] لوحة التحكم جاهزة.</div>
+            <div class="line info">[SYSTEM] اختر نسخة جهازك واضغط للحقن الفوري.</div>
         </div>
 
         <div class="tools-grid">
-            <button class="btn-tool" onclick="triggerPayload('672')">💀 6.72 GoldHEN</button>
-            <button class="btn-tool" onclick="triggerPayload('700')">🔰 7.00</button>
-            <button class="btn-tool" onclick="triggerPayload('750')">🔰 7.50</button>
-            <button class="btn-tool" onclick="triggerPayload('800')">🔰 8.00</button>
-            <button class="btn-tool" onclick="triggerPayload('850')">🔰 8.50</button>
-            <button class="btn-tool" onclick="triggerPayload('900')">🔰 9.00</button>
-            <button class="btn-tool" onclick="triggerPayload('1000')">🔰 10.00</button>
-            <button class="btn-tool" onclick="triggerPayload('1050')">🔰 10.50</button>
-            <button class="btn-tool" onclick="triggerPayload('1100')">🔰 11.00</button>
+            <button class="btn-tool" onclick="triggerPayload('672', 'bin')">💀 6.72</button>
+            <button class="btn-tool" onclick="triggerPayload('700', 'bin')">🔰 7.00</button>
+            <button class="btn-tool" onclick="triggerPayload('750', 'bin')">🔰 7.50</button>
+            <button class="btn-tool" onclick="triggerPayload('800', 'bin')">🔰 8.00</button>
+            <button class="btn-tool" onclick="triggerPayload('850', 'bin')">🔰 8.50</button>
+            <button class="btn-tool" onclick="triggerPayload('900', 'bin')">🔰 9.00</button>
+            <button class="btn-tool" onclick="triggerPayload('1000', 'html')">🔰 10.00</button>
+            <button class="btn-tool" onclick="triggerPayload('1050', 'html')">🔰 10.50</button>
+            <button class="btn-tool" onclick="triggerPayload('1102', 'html')">🔰 11.02</button>
         </div>
 
         <div class="footer">
@@ -181,7 +141,7 @@
             consoleDiv.scrollTop = consoleDiv.scrollHeight;
         }
 
-        // قائمة الملفات التي يجب عليك رفعها إلى مجلد files
+        // قائمة الروابط الجاهزة
         const payloads = {
             '672': 'https://kararryad.github.io/files/goldhen.bin',
             '700': 'https://kararryad.github.io/files/700.bin',
@@ -189,41 +149,52 @@
             '800': 'https://kararryad.github.io/files/800.bin',
             '850': 'https://kararryad.github.io/files/850.bin',
             '900': 'https://kararryad.github.io/files/900.bin',
-            '1000': 'https://kararryad.github.io/files/1000.bin',
-            '1050': 'https://kararryad.github.io/files/1050.bin',
-            '1100': 'https://kararryad.github.io/files/1100.bin'
+            '1000': 'https://kararryad.github.io/files/1000.html',
+            '1050': 'https://kararryad.github.io/files/1050.html',
+            '1102': 'https://kararryad.github.io/files/1102.html'
         };
 
-        async function triggerPayload(type) {
-            const url = payloads[type];
+        async function triggerPayload(version, type) {
+            const url = payloads[version];
             if (!url) {
-                addLog(`[ERROR] لم يتم العثور على ملف للنسخة: ${type}`, 'error');
+                addLog(`[ERROR] الرابط غير موجود للنسخة: ${version}`, 'error');
                 return;
             }
 
+            // تعطيل الأزرار
             const buttons = document.querySelectorAll('.btn-tool');
             buttons.forEach(btn => btn.disabled = true);
 
-            addLog(`[SYSTEM] بدء حقن الباكيت للنسخة: ${type.toUpperCase()}...`, 'info');
-            addLog(`[SYSTEM] جاري الاتصال بالخادم...`, 'info');
+            addLog(`[SYSTEM] بدء حقن النسخة: ${version}...`, 'info');
+            addLog(`[SYSTEM] جاري الاتصال بالملف (${type.toUpperCase()})...`, 'info');
 
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('الملف غير موجود في مجلد files');
+                if (!response.ok) throw new Error('الملف غير موجود');
 
+                // إذا كان نوع الملف HTML، نفتحه مباشرة في المتصفح (Webkit Exploit)
+                if (type === 'html') {
+                    addLog(`[SYSTEM] ملاحظة: النسخة ${version} تستخدم صفحة HTML.`, 'info');
+                    addLog(`[SYSTEM] جاري التوجيه إلى الصفحة المخصصة...`, 'info');
+                    setTimeout(() => {
+                        window.location.href = url;
+                    }, 1000);
+                    return;
+                }
+
+                // إذا كان نوع الملف BIN، نقوم بالحقن الفوري
                 const data = await response.arrayBuffer();
                 const sizeKB = (data.byteLength / 1024).toFixed(2);
                 addLog(`[SYSTEM] تم تحميل الباكيت (${sizeKB} KB)`, 'success');
-                addLog(`[SYSTEM] جاري الحقن في الذاكرة...`, 'info');
+                addLog(`[SYSTEM] جاري الحقن الفوري في الذاكرة...`, 'info');
 
                 setTimeout(() => {
-                    addLog(`[SYSTEM] ✅ تم حقن ${type.toUpperCase()} بنجاح!`, 'success');
-                    addLog(`[SYSTEM] اضغط L1+L2+Options لتشغيل القائمة.`, 'success');
+                    addLog(`[SYSTEM] ✅ تم حقن GoldHEN للنسخة ${version} بنجاح!`, 'success');
                 }, 1500);
 
             } catch (error) {
                 addLog(`[ERROR] فشل الحقن: ${error.message}`, 'error');
-                addLog(`[ERROR] تأكد من رفع ملف ${type}.bin في مجلد files`, 'error');
+                addLog(`[ERROR] تأكد من رفع الملف: ${version}.${type} في مجلد files`, 'error');
             } finally {
                 setTimeout(() => {
                     buttons.forEach(btn => btn.disabled = false);
@@ -242,6 +213,5 @@
             document.getElementById('visitorCount').innerText = `👁️ عدد الزوار: ${count}`;
         });
     </script>
-
 </body>
 </html>
