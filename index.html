@@ -6,18 +6,71 @@
     <title>قاعه رياض</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { background: #0a192f; color: #5bc0ff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Cairo', sans-serif; }
-        .box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; text-align: center; border: 1px solid #5bc0ff; }
-        h1 { font-size: 5rem; color: #5bc0ff; text-shadow: 0 0 20px #5bc0ff; margin: 0 0 10px 0; }
-        p { font-size: 1.5rem; color: #8ab4f8; margin: 10px 0 30px 0; }
-        button { background: #5bc0ff; color: white; border: none; padding: 15px 40px; font-size: 1.5rem; border-radius: 10px; cursor: pointer; width: 100%; }
+        body {
+            background: #0a192f;
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            border-bottom: 2px solid #5bc0ff;
+            background: #020c1b;
+        }
+        .header h1 {
+            font-size: 4rem;
+            color: #5bc0ff;
+            text-shadow: 0 0 20px #5bc0ff;
+            margin: 0;
+        }
+        .header p {
+            font-size: 1.5rem;
+            color: #8ab4f8;
+            margin: 5px 0;
+        }
+        .tool-container {
+            width: 95%;
+            max-width: 850px;
+            height: 80vh;
+            margin-top: 20px;
+            border: 2px solid #5bc0ff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(91, 192, 255, 0.2);
+            background: #000;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .note {
+            color: #888;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 3rem; }
+            .tool-container { height: 70vh; }
+        }
     </style>
 </head>
 <body>
-    <div class="box">
+    <div class="header">
         <h1>قاعه رياض</h1>
         <p>07736663121</p>
-        <button onclick="window.open('https://zecoxao.github.io/ntfonto/','_blank')">تشغيل النظام</button>
     </div>
+    <div class="tool-container">
+        <iframe src="https://zecoxao.github.io/ntfonto/"></iframe>
+    </div>
+    <div class="note">الأداة تعمل داخل الموقع</div>
 </body>
 </html>
