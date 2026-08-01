@@ -3,138 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad | PS4 Tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <title>kararryad | Kali Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cairo', sans-serif;
-            overflow: hidden;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 20px;
+        }
+
+        .kali-box {
+            background: #000;
+            padding: 50px 40px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
             position: relative;
         }
 
-        /* صورة ديكستر مورغان ثابتة */
-        .bg-layer {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('https://m.media-amazon.com/images/M/MV5BMTU3MzI0ODM2Nl5BMl5BanBnXkFtZTgwMDc1MzAyODE@._V1_.jpg');
-            background-size: cover;
-            background-position: center 30%;
-            filter: brightness(0.5);
-            z-index: -2;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-        }
-
-        .card {
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(6px);
-            padding: 40px 35px;
-            border-radius: 20px;
-            width: 100%; max-width: 550px;
-            text-align: center;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-
-        .hero-name {
-            font-size: 4.5rem;
-            font-weight: 900;
+        /* شعار Kali Linux Style */
+        .kali-logo {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 6rem;
+            font-weight: bold;
             color: #FFD700;
-            text-shadow: 0 0 20px #FFD700, 0 4px 0 #996515;
+            letter-spacing: -3px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
             margin: 10px 0;
+            transform: skewX(-10deg);
         }
 
-        .phone-number {
-            font-size: 1.8rem;
-            color: #fff;
-            background: rgba(255, 215, 0, 0.1);
-            padding: 8px 20px;
-            border-radius: 30px;
-            display: inline-block;
+        .sub-text {
+            font-size: 1.2rem;
+            color: #888;
+            letter-spacing: 5px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .phone-display {
+            font-size: 1.6rem;
+            color: #aaa;
+            margin-bottom: 35px;
+            letter-spacing: 2px;
         }
 
         .launch-btn {
             display: block;
             width: 100%;
-            padding: 18px;
+            padding: 15px;
+            background: transparent;
+            color: #FFD700;
+            font-size: 1.6rem;
+            font-family: 'Share Tech Mono', monospace;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .launch-btn:active {
             background: #FFD700;
             color: #000;
-            font-size: 1.8rem;
-            font-weight: 900;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 0 20px #FFD700;
+            transform: scale(0.95);
         }
-
-        .launch-btn:active { transform: scale(0.95); }
-
-        .transition-screen {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #000;
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: #FFD700;
-        }
-
-        .transition-screen h2 { font-size: 3rem; letter-spacing: 5px; margin-bottom: 15px; }
-        .transition-screen .loader {
-            width: 50px; height: 50px;
-            border: 5px solid #222;
-            border-top: 5px solid #FFD700;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         @media (max-width: 600px) {
-            .hero-name { font-size: 3.5rem; }
-            .launch-btn { font-size: 1.5rem; }
+            .kali-logo { font-size: 4rem; }
+            .launch-btn { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-layer"></div>
-    <div class="overlay"></div>
-
-    <div class="card">
-        <div class="hero-name">kararryad</div>
-        <div class="phone-number">07736663121</div>
-        <button class="launch-btn" onclick="activateLaunch()">▶ تشغيل النظام</button>
+    <div class="kali-box">
+        <div class="kali-logo">kararryad</div>
+        <div class="sub-text">// PS4 TOOL //</div>
+        <div class="phone-display">07736663121</div>
+        <button class="launch-btn" onclick="window.open('https://zecoxao.github.io/ntfonto/', '_blank')">[ تشغيل النظام ]</button>
     </div>
-
-    <div id="transition" class="transition-screen">
-        <h2>جاري التحميل</h2>
-        <div class="loader"></div>
-    </div>
-
-    <script>
-        function activateLaunch() {
-            document.getElementById('transition').style.display = 'flex';
-            setTimeout(() => {
-                window.open('https://zecoxao.github.io/ntfonto/', '_blank');
-                document.getElementById('transition').style.display = 'none';
-            }, 2500);
-        }
-    </script>
 </body>
 </html>
