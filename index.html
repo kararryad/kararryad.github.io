@@ -3,181 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad | HQ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <title>kararryad</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
             background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cairo', sans-serif;
+            font-family: Arial, sans-serif;
             padding: 20px;
-            overflow: hidden;
-        }
-
-        /* خلفية نيون متحركة */
-        .bg-effect {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at 30% 30%, #1a1a1a, #000000 80%);
-            z-index: -1;
-        }
-        .bg-effect::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(255,215,0,0.03) 0px, rgba(255,215,0,0.03) 2px, transparent 2px, transparent 6px);
-            animation: scan 5s linear infinite;
-        }
-        @keyframes scan {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100px); }
+            text-align: center;
         }
 
         .card {
-            background: rgba(10, 10, 10, 0.9);
-            padding: 40px 30px;
+            background: #111;
+            padding: 40px;
             border-radius: 20px;
             width: 100%;
-            max-width: 650px;
-            text-align: center;
-            border: 1px solid #FFD700;
-            box-shadow: 0 0 50px rgba(255,215,0,0.3);
-            position: relative;
-            transform: scale(0.98);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: scale(1);
-            box-shadow: 0 0 80px rgba(255,215,0,0.5);
+            max-width: 500px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
         }
 
         .hero-name {
-            font-size: 5.5rem;
+            font-size: 4.5rem;
             font-weight: 900;
             color: #FFD700;
-            text-shadow: 0 0 30px #FFD700, 0 0 60px rgba(255,215,0,0.5), 0 4px 0 #996515;
-            letter-spacing: 3px;
+            text-shadow: 0 0 20px #FFD700, 0 0 40px rgba(255, 215, 0, 0.6);
             margin: 10px 0;
-            font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700, 0 4px 0 #996515; }
-            to { text-shadow: 0 0 40px #FFD700, 0 0 80px #FFD700, 0 4px 0 #996515; }
         }
 
         .phone-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            margin-bottom: 35px;
-            background: rgba(255,215,0,0.1);
-            display: inline-block;
-            padding: 10px 30px;
-            border-radius: 50px;
-            border: 1px solid rgba(255,215,0,0.3);
-            backdrop-filter: blur(5px);
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #aaa;
+            margin-bottom: 30px;
         }
 
-        /* زر التشغيل القوي (غير قابل للتحكم) */
         .launch-btn {
             display: block;
             width: 100%;
-            padding: 20px;
+            padding: 15px;
             background: #FFD700;
-            color: #000000;
-            font-size: 2.2rem;
-            font-weight: 900;
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: bold;
             border: none;
-            border-radius: 15px;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 0 30px #FFD700;
+            box-shadow: 0 0 20px #FFD700;
             text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-            transition: all 0.2s;
-            letter-spacing: 3px;
+            transition: 0.2s;
         }
+
         .launch-btn:active {
             transform: scale(0.95);
         }
 
-        /* شاشة الانتقال السينمائية */
         .transition-screen {
             display: none;
             position: fixed;
             top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            width: 100%; height: 100%;
             background: #000;
             z-index: 9999;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             color: #FFD700;
-            font-family: 'Orbitron', sans-serif;
-            animation: fadeIn 0.8s ease-in-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.2); }
-            to { opacity: 1; transform: scale(1); }
-        }
+
         .transition-screen h2 {
-            font-size: 4rem;
-            letter-spacing: 10px;
-            text-shadow: 0 0 30px #FFD700;
+            font-size: 3rem;
+            letter-spacing: 5px;
             margin-bottom: 20px;
         }
+
         .transition-screen .loader {
-            width: 80px;
-            height: 80px;
-            border: 8px solid #222;
-            border-top: 8px solid #FFD700;
+            width: 60px; height: 60px;
+            border: 6px solid #222;
+            border-top: 6px solid #FFD700;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
         @media (max-width: 600px) {
-            .hero-name { font-size: 4rem; }
-            .phone-number { font-size: 1.8rem; }
-            .launch-btn { font-size: 1.8rem; }
+            .hero-name { font-size: 3.5rem; }
+            .launch-btn { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-effect"></div>
-
     <div class="card">
         <div class="hero-name">kararryad</div>
         <div class="phone-number">07736663121</div>
-        <button class="launch-btn" onclick="activateLaunch()">▶ تشغيل النظام</button>
+        <button class="launch-btn" onclick="activateLaunch()">تشغيل النظام</button>
     </div>
 
-    <!-- شاشة الانتقال المؤقتة -->
     <div id="transition" class="transition-screen">
         <h2>EXECUTING</h2>
         <div class="loader"></div>
-        <p style="color:#aaa; margin-top:20px; font-size:1.2rem;">جاري فتح الأداة...</p>
+        <p style="color:#aaa; margin-top:15px;">جاري تحميل الأداة...</p>
     </div>
 
     <script>
         function activateLaunch() {
-            // إظهار شاشة الانتقال
             document.getElementById('transition').style.display = 'flex';
-
-            // بعد 3 ثوانٍ، فتح الرابط في نافذة جديدة
             setTimeout(() => {
                 window.open('https://w90008.github.io/6/', '_blank');
                 document.getElementById('transition').style.display = 'none';
