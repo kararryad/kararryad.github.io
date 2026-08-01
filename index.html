@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - لوحة التحكم PS4</title>
+    <title>قاعه رياض - لوحة التحكم الشاملة</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: #0a0a0a;
             color: #fff;
@@ -20,16 +16,15 @@
             padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             background: #111;
             border: 1px solid #2a2a2a;
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 0 30px rgba(204, 0, 0, 0.1);
+            box-shadow: 0 0 40px rgba(204, 0, 0, 0.1);
         }
         
-        /* رأس الصفحة والشعار */
         .header {
             text-align: center;
             border-bottom: 1px solid #2a2a2a;
@@ -59,7 +54,6 @@
             color: #cc0000;
         }
 
-        /* صندوق الأوامر (Console) */
         .console-box {
             background: #0d0d0d;
             border: 1px solid #2a2a2a;
@@ -74,24 +68,14 @@
             text-align: left;
             direction: ltr;
         }
-        .console-box .line {
-            margin: 5px 0;
-            color: #00ff00;
-        }
-        .console-box .line.error {
-            color: #ff4444;
-        }
-        .console-box .line.success {
-            color: #44ff44;
-        }
-        .console-box .line.info {
-            color: #44aaff;
-        }
+        .console-box .line { margin: 5px 0; color: #00ff00; }
+        .console-box .line.error { color: #ff4444; }
+        .console-box .line.success { color: #44ff44; }
+        .console-box .line.info { color: #44aaff; }
 
-        /* أزرار الأدوات */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -103,7 +87,7 @@
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             text-align: center;
         }
@@ -122,7 +106,6 @@
             box-shadow: none;
         }
 
-        /* قسم التواصل */
         .footer {
             margin-top: 30px;
             border-top: 1px solid #2a2a2a;
@@ -131,51 +114,50 @@
         }
         .social-links a {
             display: inline-block;
-            margin: 0 10px;
+            margin: 0 5px;
             color: #aaa;
             text-decoration: none;
             background: #1a1a1a;
-            padding: 8px 20px;
+            padding: 8px 15px;
             border-radius: 30px;
             border: 1px solid #2a2a2a;
             transition: 0.3s;
+            font-size: 0.9rem;
         }
         .social-links a:hover {
             color: #fff;
             border-color: #cc0000;
         }
-        .visitor-count {
-            margin-top: 15px;
-            color: #444;
-            font-size: 0.9rem;
-        }
+        .visitor-count { margin-top: 15px; color: #444; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <!-- القسم 1: العنوان -->
         <div class="header">
             <div class="logo">⚡ قاعه رياض</div>
-            <div class="sub">لوحة التحكم المتقدمة لأدوات PS4</div>
+            <div class="sub">مستودع أدوات PS4 الشامل (6.72 - 11.00)</div>
             <div class="contact-box">📞 07736663121</div>
         </div>
 
-        <!-- القسم 2: صندوق الأوامر -->
         <div class="console-box" id="console">
             <div class="line info">[SYSTEM] تم تحميل لوحة التحكم بنجاح.</div>
-            <div class="line info">[SYSTEM] اختر الأداة واضغط عليها للحقن.</div>
+            <div class="line info">[SYSTEM] اختر نسخة جهازك واضغط للحقن.</div>
+            <div class="line info">[SYSTEM] ملاحظة: بعد الحقن، اضغط L1+L2+Options لفتح القائمة.</div>
         </div>
 
-        <!-- القسم 3: أزرار الحقن -->
         <div class="tools-grid">
-            <button class="btn-tool" onclick="triggerPayload('goldhen')">💀 GoldHEN</button>
-            <button class="btn-tool" onclick="triggerPayload('mira')">🌐 Mira</button>
-            <button class="btn-tool" onclick="triggerPayload('restore')">♻️ Restore</button>
+            <button class="btn-tool" onclick="triggerPayload('672')">💀 6.72 GoldHEN</button>
+            <button class="btn-tool" onclick="triggerPayload('700')">🔰 7.00</button>
+            <button class="btn-tool" onclick="triggerPayload('750')">🔰 7.50</button>
+            <button class="btn-tool" onclick="triggerPayload('800')">🔰 8.00</button>
+            <button class="btn-tool" onclick="triggerPayload('850')">🔰 8.50</button>
+            <button class="btn-tool" onclick="triggerPayload('900')">🔰 9.00</button>
+            <button class="btn-tool" onclick="triggerPayload('1000')">🔰 10.00</button>
+            <button class="btn-tool" onclick="triggerPayload('1050')">🔰 10.50</button>
+            <button class="btn-tool" onclick="triggerPayload('1100')">🔰 11.00</button>
         </div>
 
-        <!-- القسم 4: التواصل -->
         <div class="footer">
             <div class="social-links">
                 <a href="tel:07736663121" target="_blank">📞 اتصل بي</a>
@@ -184,11 +166,9 @@
             </div>
             <div class="visitor-count" id="visitorCount">👁️ عدد الزوار: جاري التحميل...</div>
         </div>
-
     </div>
 
     <script>
-        // دالة إضافة سجل الأوامر
         function addLog(message, type = 'normal') {
             const consoleDiv = document.getElementById('console');
             const line = document.createElement('div');
@@ -201,45 +181,49 @@
             consoleDiv.scrollTop = consoleDiv.scrollHeight;
         }
 
-        // خريطة روابط الباكيتات (يمكنك تغييرها لاحقاً)
+        // قائمة الملفات التي يجب عليك رفعها إلى مجلد files
         const payloads = {
-            'goldhen': 'https://kararryad.github.io/files/goldhen.bin',
-            'mira': 'https://kararryad.github.io/files/mira.bin',
-            'restore': 'https://kararryad.github.io/files/restore.bin'
+            '672': 'https://kararryad.github.io/files/goldhen.bin',
+            '700': 'https://kararryad.github.io/files/700.bin',
+            '750': 'https://kararryad.github.io/files/750.bin',
+            '800': 'https://kararryad.github.io/files/800.bin',
+            '850': 'https://kararryad.github.io/files/850.bin',
+            '900': 'https://kararryad.github.io/files/900.bin',
+            '1000': 'https://kararryad.github.io/files/1000.bin',
+            '1050': 'https://kararryad.github.io/files/1050.bin',
+            '1100': 'https://kararryad.github.io/files/1100.bin'
         };
 
-        // وظيفة الحقن
         async function triggerPayload(type) {
             const url = payloads[type];
             if (!url) {
-                addLog(`[ERROR] الرابط غير موجود للأداة: ${type}`, 'error');
+                addLog(`[ERROR] لم يتم العثور على ملف للنسخة: ${type}`, 'error');
                 return;
             }
 
-            // تعطيل الأزرار مؤقتاً
             const buttons = document.querySelectorAll('.btn-tool');
             buttons.forEach(btn => btn.disabled = true);
 
-            addLog(`[SYSTEM] بدء حقن الباكيت: ${type.toUpperCase()}...`, 'info');
+            addLog(`[SYSTEM] بدء حقن الباكيت للنسخة: ${type.toUpperCase()}...`, 'info');
             addLog(`[SYSTEM] جاري الاتصال بالخادم...`, 'info');
 
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('الملف غير موجود (404)');
+                if (!response.ok) throw new Error('الملف غير موجود في مجلد files');
 
                 const data = await response.arrayBuffer();
                 const sizeKB = (data.byteLength / 1024).toFixed(2);
                 addLog(`[SYSTEM] تم تحميل الباكيت (${sizeKB} KB)`, 'success');
                 addLog(`[SYSTEM] جاري الحقن في الذاكرة...`, 'info');
 
-                // محاكاة الحقن
                 setTimeout(() => {
                     addLog(`[SYSTEM] ✅ تم حقن ${type.toUpperCase()} بنجاح!`, 'success');
-                    addLog(`[SYSTEM] ✅ النظام جاهز للتشغيل`, 'success');
+                    addLog(`[SYSTEM] اضغط L1+L2+Options لتشغيل القائمة.`, 'success');
                 }, 1500);
 
             } catch (error) {
                 addLog(`[ERROR] فشل الحقن: ${error.message}`, 'error');
+                addLog(`[ERROR] تأكد من رفع ملف ${type}.bin في مجلد files`, 'error');
             } finally {
                 setTimeout(() => {
                     buttons.forEach(btn => btn.disabled = false);
@@ -247,11 +231,10 @@
             }
         }
 
-        // عداد الزوار (بسيط يعتمد على تخزين المتصفح)
         document.addEventListener('DOMContentLoaded', () => {
             let count = localStorage.getItem('visitorCount');
             if (!count) {
-                count = Math.floor(Math.random() * 150) + 1; // رقم عشوائي للتجربة
+                count = Math.floor(Math.random() * 150) + 1;
             } else {
                 count = parseInt(count) + 1;
             }
