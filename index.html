@@ -3,44 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>kararryad | Cinema Mode</title>
+    <title>kararryad | System Initialize</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #000; min-height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            font-family: 'Cairo', sans-serif; padding: 20px;
-            overflow: hidden;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cairo', sans-serif;
+            padding: 20px;
         }
 
-        /* شاشة المؤثرات السينمائية */
+        /* شاشة سينمائية */
         .cinema-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 20% 20%, #111, #000 80%);
             z-index: -1;
         }
-        .cinema-bg::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,215,0,0.02) 2px, rgba(255,215,0,0.02) 4px);
-            animation: scanlines 0.5s linear infinite;
-        }
-        @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
         .main-card {
-            background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(5,5,5,0.95));
-            padding: 40px; border-radius: 30px; width: 100%; max-width: 600px;
-            box-shadow: 0 20px 50px rgba(255,215,0,0.1), inset 0 0 100px rgba(255,215,0,0.02);
-            border: 1px solid rgba(255,215,0,0.2);
-            position: relative; overflow: hidden; text-align: center;
-            animation: fadeIn 1.5s ease-out;
+            background: linear-gradient(145deg, rgba(20,20,20,0.95), rgba(5,5,5,0.95));
+            padding: 40px; border-radius: 30px;
+            width: 100%; max-width: 600px;
+            box-shadow: 0 0 0 2px #FFD700 inset, 0 0 60px rgba(255,215,0,0.2);
+            text-align: center; position: relative;
+            transform: rotateY(5deg);
         }
-        @keyframes fadeIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
 
         .movie-title {
             font-family: 'Orbitron', sans-serif; color: #FFD700;
-            font-size: 2.5rem; letter-spacing: 5px; text-shadow: 0 0 20px #FFD700;
-            margin-bottom: 10px; animation: glitch 3s infinite;
+            font-size: 2rem; letter-spacing: 5px; text-shadow: 0 0 20px #FFD700;
+            margin-bottom: 20px;
+            animation: glitch 4s infinite;
         }
         @keyframes glitch {
             0%, 90%, 100% { transform: translate(0); }
@@ -52,77 +49,73 @@
         .logo {
             width: 140px; height: 140px; border-radius: 50%;
             border: 3px solid #FFD700; box-shadow: 0 0 40px #FFD700;
-            margin-bottom: 15px; animation: float 6s ease-in-out infinite;
+            margin-bottom: 15px;
         }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .hero-name {
             font-size: 4rem; font-weight: 900; color: #FFD700;
             text-shadow: 0 0 30px #FFD700, 0 4px 0 #b8860b;
-            margin: 5px 0; letter-spacing: 2px; font-family: 'Cairo', sans-serif;
+            margin: 5px 0;
         }
 
         .code-phone {
             font-family: 'Orbitron', sans-serif; color: #aaa; font-size: 1.2rem;
-            background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 5px;
+            background: rgba(255,215,0,0.1); padding: 5px 15px; border-radius: 5px;
             display: inline-block; margin-bottom: 30px; border: 1px solid #333;
         }
 
-        /* زر الأداة السينمائي */
+        /* زر التشغيل السينمائي */
         .launch-btn {
             background: linear-gradient(135deg, #FFD700, #b8860b);
             color: #000; border: none; padding: 18px 50px;
-            font-size: 1.8rem; font-weight: 900; border-radius: 10px;
+            font-size: 1.8rem; font-weight: 900; border-radius: 60px;
             cursor: pointer; box-shadow: 0 0 30px #FFD700;
-            transition: 0.3s; width: 100%; text-transform: uppercase;
-            letter-spacing: 3px; font-family: 'Orbitron', sans-serif;
+            width: 100%; font-family: 'Orbitron', sans-serif;
         }
+
         .launch-btn:active { transform: scale(0.95); }
 
-        /* طبقة الأداة */
-        #tool-layer {
-            display: none; position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; background: #000;
-            z-index: 9999; flex-direction: column; justify-content: center;
-            align-items: center;
+        /* شاشة التحميل (تظهر بدلاً من زر التشغيل) */
+        #loading-screen {
+            display: none; text-align: center; color: #00ffcc;
+            font-family: 'Orbitron', sans-serif; margin-top: 20px;
         }
-        .tool-screen {
-            width: 95%; height: 90%; background: #000;
-            border: 2px solid #FFD700; border-radius: 20px;
-            overflow: hidden; position: relative;
+        .loading-text {
+            font-size: 1.5rem; color: #00ffcc;
+            animation: blink 1s infinite;
         }
-        .tool-screen iframe { width: 100%; height: 100%; border: none; }
-        .close-btn {
-            margin-top: 15px; background: #ff3333; color: white;
-            border: none; padding: 10px 40px; border-radius: 30px;
-            font-weight: bold; font-size: 1.2rem; cursor: pointer;
-        }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
     <div class="cinema-bg"></div>
 
     <div class="main-card">
-        <div class="movie-title">// CINEMA MODE //</div>
+        <div class="movie-title">// SYSTEM INITIALIZING //</div>
         <img src="https://i.postimg.cc/J0S31W8V/logo.png" class="logo" alt="شعار">
         <div class="hero-name">kararryad</div>
         <div class="code-phone">[ 07736663121 ]</div>
-        <button class="launch-btn" onclick="openTool()">▶ تشغيل الفيلم</button>
-    </div>
 
-    <div id="tool-layer">
-        <div class="tool-screen">
-            <iframe src="https://w90008.github.io/6/"></iframe>
+        <!-- زر التشغيل الأساسي -->
+        <button class="launch-btn" id="mainBtn" onclick="startLoading()">▶ تشغيل النظام</button>
+
+        <!-- شاشة التحميل المخفية -->
+        <div id="loading-screen">
+            <div class="loading-text">جاري التحميل...</div>
+            <p style="color:#888; font-size:0.9rem; margin-top:10px;">محاولة الاتصال بالخادم...</p>
         </div>
-        <button class="close-btn" onclick="closeTool()">✖ إغلاق المسرح</button>
     </div>
 
     <script>
-        function openTool() {
-            document.getElementById('tool-layer').style.display = 'flex';
-        }
-        function closeTool() {
-            document.getElementById('tool-layer').style.display = 'none';
+        function startLoading() {
+            // إخفاء الزر وإظهار شاشة التحميل
+            document.getElementById('mainBtn').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+
+            // بعد 3 ثوانٍ، فتح الأداة في نافذة جديدة
+            setTimeout(() => {
+                window.open('https://w90008.github.io/6/', '_blank');
+            }, 3000);
         }
     </script>
 </body>
