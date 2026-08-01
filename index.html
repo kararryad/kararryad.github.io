@@ -1,26 +1,69 @@
-
 <!DOCTYPE html>
-<html lang='ar'>
+<html lang="ar">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>kararryad - الموقع الرسمي</title>
-    <link href='https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kararryad | PS4 Tool</title>
     <style>
-        body { background: #0a0a0a; color: #fff; font-family: 'Cairo', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; perspective: 1000px; }
-        .container { background: rgba(0,0,0,0.7); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.3); border: 1px solid #FFD700; transform: rotateY(-5deg); }
-        .logo { width: 150px; height: 150px; border-radius: 50%; box-shadow: 0 0 30px #FFD700; margin-bottom: 20px; border: 3px solid #FFD700; }
-        h1 { font-size: 3em; color: #FFD700; text-shadow: 0 0 20px #FFD700; margin: 10px 0; }
-        .phone { font-size: 1.5em; color: #aaa; letter-spacing: 2px; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+            border-bottom: 2px solid #FFD700;
+        }
+        .header h1 {
+            color: #FFD700;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px #FFD700;
+            margin: 5px 0;
+        }
+        .header p {
+            color: #aaa;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .tool-container {
+            width: 95%;
+            max-width: 800px;
+            height: 85vh;
+            margin-top: 20px;
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            background: #000;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2rem; }
+            .tool-container { height: 80vh; }
+        }
     </style>
 </head>
 <body>
-    <div class='container'>
-        <img src='https://i.postimg.cc/J0S31W8V/logo.png' class='logo' alt='Logo'>
+    <div class="header">
         <h1>kararryad</h1>
-        <div class='phone'>07736663121</div>
-    <div style="margin-top: 30px; width: 100%; max-width: 800px; height: 500px; border: 2px solid #FFD700; border-radius: 15px; overflow: hidden; box-shadow: 0 0 30px rgba(255,215,0,0.5);">
-    <iframe src="https://w90008.github.io/6/" width="100%" height="100%" frameborder="0"></iframe>
-</div>
+        <p>07736663121</p>
+    </div>
+    <div class="tool-container">
+        <iframe src="https://w90008.github.io/6/"></iframe>
+    </div>
 </body>
 </html>
