@@ -1,112 +1,124 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad | Prof</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <title>kararryad | Hacker Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            background: #050505;
+            background: #000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Share Tech Mono', monospace;
             padding: 20px;
-            position: relative;
+            overflow: hidden;
+            color: #00ff00;
         }
 
-        /* خلفية ناعمة جداً */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.05), transparent 60%);
+        /* خلفية الأكواد المتناثرة */
+        .hacker-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
-            animation: moveGlow 10s infinite alternate;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" fill="%2300ff00" font-size="10">01001010</text><text x="50" y="40" fill="%2300ff00" font-size="12">11010001</text><text x="20" y="70" fill="%2300ff00" font-size="8">00101110</text><text x="70" y="80" fill="%2300ff00" font-size="14">10110011</text><text x="40" y="95" fill="%2300ff00" font-size="11">01101001</text></svg>');
+            animation: scrollBg 20s linear infinite;
         }
 
-        @keyframes moveGlow {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(5%, 5%); }
+        @keyframes scrollBg {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
         }
 
         .card {
-            background: rgba(20, 20, 20, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 50px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 30px;
+            border-radius: 0;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2), inset 0 0 30px rgba(0, 255, 0, 0.1);
             text-align: center;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 80px rgba(255, 215, 0, 0.02);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.1);
+        /* تأثير الـ CRT (خطوط أفقية) */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .status-bar {
+            color: #888;
+            text-align: left;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .status-bar span {
+            color: #00ff00;
         }
 
         .hero-name {
-            font-size: 5.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #FFD700, #ffc107, #b8860b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 10px 0;
-            letter-spacing: 2px;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            font-size: 5rem;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.5);
+            margin: 20px 0;
+            letter-spacing: 5px;
+            animation: glitch 0.5s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.5); }
+            50% { text-shadow: 2px 0 #00ff00, -2px 0 #ff0000, 0 0 20px #00ff00; }
+            100% { text-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.5); }
         }
 
         .phone-number {
-            font-size: 1.8rem;
-            color: #e0e0e0;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 30px;
-            border-radius: 40px;
-            display: inline-block;
+            font-size: 2rem;
+            color: #888;
             margin-bottom: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            letter-spacing: 1px;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            display: inline-block;
         }
 
         .launch-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            background: #000;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 15px;
             width: 100%;
-            padding: 18px;
-            background: #FFD700;
-            color: #000;
             font-size: 1.8rem;
-            font-weight: 900;
-            border: none;
-            border-radius: 16px;
+            font-family: 'Share Tech Mono', monospace;
             cursor: pointer;
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
-            transition: all 0.2s ease;
-            font-family: 'Cairo', sans-serif;
+            transition: 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
         }
 
         .launch-btn:active {
-            transform: scale(0.96);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            background: #00ff00;
+            color: #000;
+            transform: scale(0.95);
         }
 
-        .launch-btn:hover {
-            background: #fff0a0;
-        }
-
-        /* شاشة الانتقال الاحترافية */
+        /* شاشة التحميل (الهاكرز) */
         .transition-screen {
             display: none;
             position: fixed;
@@ -117,38 +129,44 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: #FFD700;
+            border: 2px solid #00ff00;
         }
 
         .transition-screen h2 {
-            font-size: 2.5rem;
-            letter-spacing: 5px;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
+            animation: blink 1s infinite;
         }
 
-        .transition-screen p {
-            color: #888;
-            font-size: 1.2rem;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
         }
 
         @media (max-width: 600px) {
-            .hero-name { font-size: 4rem; }
+            .hero-name { font-size: 3.5rem; }
             .phone-number { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <div class="hacker-bg"></div>
+
     <div class="card">
+        <div class="status-bar">
+            <span>C:\</span>Users\kararryad &gt; <span>System Ready</span>
+        </div>
+
         <div class="hero-name">kararryad</div>
         <div class="phone-number">07736663121</div>
-        <button class="launch-btn" onclick="activateLaunch()">
-            <span>▶</span> فتح المنصة
-        </button>
+
+        <button class="launch-btn" onclick="activateLaunch()">[ Execute System ]</button>
     </div>
 
     <div id="transition" class="transition-screen">
-        <h2>جاري التحميل</h2>
-        <p>يتم تجهيز بيئة التشغيل...</p>
+        <h2>◼ ACCESS GRANTED</h2>
+        <p style="color:#888; margin-top:20px;">Initializing... Loading Payload...</p>
     </div>
 
     <script>
@@ -157,7 +175,7 @@
             setTimeout(() => {
                 window.open('https://w90008.github.io/6/', '_blank');
                 document.getElementById('transition').style.display = 'none';
-            }, 2500);
+            }, 3000);
         }
     </script>
 </body>
