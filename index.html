@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - لوحة التحكم الشاملة</title>
+    <title>قاعه رياض - المستودع الشامل</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: #0a0a0a;
             color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,7 +22,6 @@
             border: 1px solid #2a2a2a;
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 0 40px rgba(204, 0, 0, 0.1);
         }
         .header {
             text-align: center;
@@ -30,188 +29,81 @@
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-        .header .logo { font-size: 3.5rem; font-weight: 900; color: #cc0000; text-shadow: 0 0 20px rgba(204,0,0,0.4); letter-spacing: 2px; }
-        .header .sub { color: #777; margin-top: 10px; font-size: 1.1rem; }
+        .header .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #cc0000;
+            text-shadow: 0 0 20px rgba(204,0,0,0.4);
+        }
         .contact-box {
-            display: inline-block;
             background: #1a1a1a;
             border: 1px solid #cc0000;
             padding: 8px 20px;
             border-radius: 30px;
+            display: inline-block;
             margin-top: 10px;
-            font-size: 1.1rem;
             color: #cc0000;
         }
-        .console-box {
-            background: #0d0d0d;
-            border: 1px solid #2a2a2a;
-            border-radius: 12px;
-            padding: 20px;
-            min-height: 150px;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-            text-align: left;
-            direction: ltr;
-        }
-        .console-box .line { margin: 5px 0; color: #00ff00; }
-        .console-box .line.error { color: #ff4444; }
-        .console-box .line.success { color: #44ff44; }
-        .console-box .line.info { color: #44aaff; }
-
-        .tools-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+            margin-top: 20px;
         }
-        .btn-tool {
+        .btn {
             background: #1a1a1a;
-            color: #fff;
             border: 1px solid #2a2a2a;
-            padding: 15px 10px;
+            padding: 20px;
             border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.3s ease;
             text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+            font-weight: bold;
+            display: block;
         }
-        .btn-tool:hover {
+        .btn:hover {
             background: #cc0000;
             border-color: #cc0000;
             transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(204,0,0,0.3);
         }
-        .btn-tool:disabled { opacity: 0.5; cursor: not-allowed; background: #222; transform: none; box-shadow: none; }
-
-        .footer { margin-top: 30px; border-top: 1px solid #2a2a2a; padding-top: 20px; text-align: center; }
-        .social-links a { display: inline-block; margin: 0 5px; color: #aaa; text-decoration: none; background: #1a1a1a; padding: 8px 15px; border-radius: 30px; border: 1px solid #2a2a2a; transition: 0.3s; }
-        .social-links a:hover { color: #fff; border-color: #cc0000; }
-        .visitor-count { margin-top: 15px; color: #444; font-size: 0.9rem; }
+        .btn.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #444;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div class="logo">⚡ قاعه رياض</div>
-            <div class="sub">مستودع أدوات PS4 الشامل (6.72 - 11.02)</div>
             <div class="contact-box">📞 07736663121</div>
         </div>
 
-        <div class="console-box" id="console">
-            <div class="line info">[SYSTEM] لوحة التحكم جاهزة.</div>
-            <div class="line info">[SYSTEM] اختر نسخة جهازك واضغط للحقن الفوري.</div>
-        </div>
-
-        <div class="tools-grid">
-            <button class="btn-tool" onclick="triggerPayload('672', 'bin')">💀 6.72</button>
-            <button class="btn-tool" onclick="triggerPayload('700', 'bin')">🔰 7.00</button>
-            <button class="btn-tool" onclick="triggerPayload('750', 'bin')">🔰 7.50</button>
-            <button class="btn-tool" onclick="triggerPayload('800', 'bin')">🔰 8.00</button>
-            <button class="btn-tool" onclick="triggerPayload('850', 'bin')">🔰 8.50</button>
-            <button class="btn-tool" onclick="triggerPayload('900', 'bin')">🔰 9.00</button>
-            <button class="btn-tool" onclick="triggerPayload('1000', 'html')">🔰 10.00</button>
-            <button class="btn-tool" onclick="triggerPayload('1050', 'html')">🔰 10.50</button>
-            <button class="btn-tool" onclick="triggerPayload('1102', 'html')">🔰 11.02</button>
+        <h3 style="text-align:center; color:#777; margin-bottom:10px;">اختر نسخة جهازك</h3>
+        
+        <div class="grid">
+            <a href="https://kararryad.github.io/hosts/672.html" class="btn">💀 6.72</a>
+            <a href="https://kararryad.github.io/hosts/700.html" class="btn">🔰 7.00</a>
+            <a href="https://kararryad.github.io/hosts/750.html" class="btn">🔰 7.50</a>
+            <a href="https://kararryad.github.io/hosts/800.html" class="btn">🔰 8.00</a>
+            <a href="https://kararryad.github.io/hosts/850.html" class="btn">🔰 8.50</a>
+            <a href="https://kararryad.github.io/hosts/900.html" class="btn">🔰 9.00</a>
+            <a href="https://kararryad.github.io/hosts/1000.html" class="btn">🔰 10.00</a>
+            <a href="https://kararryad.github.io/hosts/1050.html" class="btn">🔰 10.50</a>
+            <a href="https://kararryad.github.io/hosts/1100.html" class="btn">🔰 11.00</a>
         </div>
 
         <div class="footer">
-            <div class="social-links">
-                <a href="tel:07736663121" target="_blank">📞 اتصل بي</a>
-                <a href="https://wa.me/9647736663121" target="_blank">💬 واتساب</a>
-                <a href="https://t.me/YourUsername" target="_blank">✈️ تيليجرام</a>
-            </div>
-            <div class="visitor-count" id="visitorCount">👁️ عدد الزوار: جاري التحميل...</div>
+            &copy; 2026 قاعه رياض
         </div>
     </div>
-
-    <script>
-        function addLog(message, type = 'normal') {
-            const consoleDiv = document.getElementById('console');
-            const line = document.createElement('div');
-            line.className = 'line';
-            if (type === 'error') line.classList.add('error');
-            else if (type === 'success') line.classList.add('success');
-            else if (type === 'info') line.classList.add('info');
-            line.innerText = message;
-            consoleDiv.appendChild(line);
-            consoleDiv.scrollTop = consoleDiv.scrollHeight;
-        }
-
-        // قائمة الروابط الجاهزة
-        const payloads = {
-            '672': 'https://kararryad.github.io/files/goldhen.bin',
-            '700': 'https://kararryad.github.io/files/700.bin',
-            '750': 'https://kararryad.github.io/files/750.bin',
-            '800': 'https://kararryad.github.io/files/800.bin',
-            '850': 'https://kararryad.github.io/files/850.bin',
-            '900': 'https://kararryad.github.io/files/900.bin',
-            '1000': 'https://kararryad.github.io/files/1000.html',
-            '1050': 'https://kararryad.github.io/files/1050.html',
-            '1102': 'https://kararryad.github.io/files/1102.html'
-        };
-
-        async function triggerPayload(version, type) {
-            const url = payloads[version];
-            if (!url) {
-                addLog(`[ERROR] الرابط غير موجود للنسخة: ${version}`, 'error');
-                return;
-            }
-
-            // تعطيل الأزرار
-            const buttons = document.querySelectorAll('.btn-tool');
-            buttons.forEach(btn => btn.disabled = true);
-
-            addLog(`[SYSTEM] بدء حقن النسخة: ${version}...`, 'info');
-            addLog(`[SYSTEM] جاري الاتصال بالملف (${type.toUpperCase()})...`, 'info');
-
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('الملف غير موجود');
-
-                // إذا كان نوع الملف HTML، نفتحه مباشرة في المتصفح (Webkit Exploit)
-                if (type === 'html') {
-                    addLog(`[SYSTEM] ملاحظة: النسخة ${version} تستخدم صفحة HTML.`, 'info');
-                    addLog(`[SYSTEM] جاري التوجيه إلى الصفحة المخصصة...`, 'info');
-                    setTimeout(() => {
-                        window.location.href = url;
-                    }, 1000);
-                    return;
-                }
-
-                // إذا كان نوع الملف BIN، نقوم بالحقن الفوري
-                const data = await response.arrayBuffer();
-                const sizeKB = (data.byteLength / 1024).toFixed(2);
-                addLog(`[SYSTEM] تم تحميل الباكيت (${sizeKB} KB)`, 'success');
-                addLog(`[SYSTEM] جاري الحقن الفوري في الذاكرة...`, 'info');
-
-                setTimeout(() => {
-                    addLog(`[SYSTEM] ✅ تم حقن GoldHEN للنسخة ${version} بنجاح!`, 'success');
-                }, 1500);
-
-            } catch (error) {
-                addLog(`[ERROR] فشل الحقن: ${error.message}`, 'error');
-                addLog(`[ERROR] تأكد من رفع الملف: ${version}.${type} في مجلد files`, 'error');
-            } finally {
-                setTimeout(() => {
-                    buttons.forEach(btn => btn.disabled = false);
-                }, 2000);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            let count = localStorage.getItem('visitorCount');
-            if (!count) {
-                count = Math.floor(Math.random() * 150) + 1;
-            } else {
-                count = parseInt(count) + 1;
-            }
-            localStorage.setItem('visitorCount', count);
-            document.getElementById('visitorCount').innerText = `👁️ عدد الزوار: ${count}`;
-        });
-    </script>
 </body>
 </html>
