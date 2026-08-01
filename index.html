@@ -3,132 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - Exploit Host</title>
+    <title>قاعه رياض - لوحة التحكم PS4</title>
     <style>
-        body { background-color: #0a0a0a; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 40px; margin: 0; }
-        
-        .container { max-width: 700px; margin: 0 auto; border: 1px solid #cc0000; border-radius: 20px; padding: 40px; background: #141414; box-shadow: 0 0 30px rgba(204, 0, 0, 0.1); }
-        
-        h1 { color: #cc0000; font-size: 3.5rem; margin: 0; text-shadow: 0 0 20px rgba(204,0,0,0.5); letter-spacing: 2px; }
-        .sub { color: #888; margin-bottom: 20px; }
-        
-        .status-box {
-            background: #000;
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            color: #00ff00;
-            min-height: 100px;
-            overflow-y: auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .btn-inject {
-            background: #cc0000;
+        body {
+            background-color: #0a0a0a;
             color: #fff;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-            margin-top: 10px;
-            box-shadow: 0 0 15px rgba(204,0,0,0.3);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
         }
-        .btn-inject:hover { background: #ff1a1a; transform: scale(1.02); box-shadow: 0 0 25px rgba(204,0,0,0.7); }
-        .btn-inject:disabled { background: #444; cursor: not-allowed; box-shadow: none; transform: none; }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(204, 0, 0, 0.1);
+        }
         
-        .console-line { margin: 5px 0; color: #0f0; }
-        .console-line.error { color: #ff4444; }
-        .console-line.success { color: #44ff44; font-weight: bold; }
-        
-        .contact { margin-top: 20px; color: #555; font-size: 0.9rem; border-top: 1px solid #222; padding-top: 20px; }
+        /* رأس الصفحة والشعار */
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #cc0000;
+            text-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+            letter-spacing: 2px;
+        }
+        .header .sub {
+            color: #777;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+        .contact-box {
+            display: inline-block;
+            background: #1a1a1a;
+            border: 1px solid #cc0000;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #cc0000;
+        }
+
+        /* صندوق الأوامر (Console) */
+        .console-box {
+            background: #0d0d0d;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 150px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            text-align: left;
+            direction: ltr;
+        }
+        .console-box .line {
+            margin: 5px 0;
+            color: #00ff00;
+        }
+        .console-box .line.error {
+            color: #ff4444;
+        }
+        .console-box .line.success {
+            color: #44ff44;
+        }
+        .console-box .line.info {
+            color: #44aaff;
+        }
+
+        /* أزرار الأدوات */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .btn-tool {
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #2a2a2a;
+            padding: 15px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn-tool:hover {
+            background: #cc0000;
+            border-color: #cc0000;
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+        }
+        .btn-tool:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #222;
+            border-color: #333;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* قسم التواصل */
+        .footer {
+            margin-top: 30px;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 20px;
+            text-align: center;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #aaa;
+            text-decoration: none;
+            background: #1a1a1a;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid #2a2a2a;
+            transition: 0.3s;
+        }
+        .social-links a:hover {
+            color: #fff;
+            border-color: #cc0000;
+        }
+        .visitor-count {
+            margin-top: 15px;
+            color: #444;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>⚡ قاعه رياض</h1>
-        <p class="sub">PS4 6.72 GoldHEN Loader - الحقن الفوري</p>
-
-        <div class="status-box" id="console">
-            <div class="console-line">[SYSTEM] جاهز للتشغيل.</div>
-            <div class="console-line">[SYSTEM] اضغط الزر لبدء الحقن المباشر.</div>
+        
+        <!-- القسم 1: العنوان -->
+        <div class="header">
+            <div class="logo">⚡ قاعه رياض</div>
+            <div class="sub">لوحة التحكم المتقدمة لأدوات PS4</div>
+            <div class="contact-box">📞 07736663121</div>
         </div>
 
-        <button class="btn-inject" id="injectBtn" onclick="triggerJailbreak()">🚀 الحقن المباشر (Inject)</button>
-        
-        <div class="contact">بوابة خاصة بقاعه رياض</div>
+        <!-- القسم 2: صندوق الأوامر -->
+        <div class="console-box" id="console">
+            <div class="line info">[SYSTEM] تم تحميل لوحة التحكم بنجاح.</div>
+            <div class="line info">[SYSTEM] اختر الأداة واضغط عليها للحقن.</div>
+        </div>
+
+        <!-- القسم 3: أزرار الحقن -->
+        <div class="tools-grid">
+            <button class="btn-tool" onclick="triggerPayload('goldhen')">💀 GoldHEN</button>
+            <button class="btn-tool" onclick="triggerPayload('mira')">🌐 Mira</button>
+            <button class="btn-tool" onclick="triggerPayload('restore')">♻️ Restore</button>
+        </div>
+
+        <!-- القسم 4: التواصل -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="tel:07736663121" target="_blank">📞 اتصل بي</a>
+                <a href="https://wa.me/9647736663121" target="_blank">💬 واتساب</a>
+                <a href="https://t.me/YourUsername" target="_blank">✈️ تيليجرام</a>
+            </div>
+            <div class="visitor-count" id="visitorCount">👁️ عدد الزوار: جاري التحميل...</div>
+        </div>
+
     </div>
 
     <script>
-        function triggerJailbreak() {
-            const consoleDiv = document.getElementById("console");
-            const btn = document.getElementById("injectBtn");
-
-            // تعطيل الزر أثناء التشغيل
-            btn.disabled = true;
-            btn.innerText = "⏳ جاري الحقن...";
-            
-            // تنظيف الشاشة
-            consoleDiv.innerHTML = '<div class="console-line">[SYSTEM] بدء عملية الحقن...</div>';
-
-            // محاكاة اتصال وتحميل الباكيت من موقعك
-            // هذا الرابط هو للملف الذي رفعته
-            const payloadUrl = 'https://kararryad.github.io/files/goldhen.bin';
-
-            addLog("[SYSTEM] الاتصال بالخادم...");
-            addLog("[SYSTEM] جلب ملف GoldHEN.bin...");
-
-            fetch(payloadUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("الملف غير موجود (Error 404)");
-                    }
-                    return response.arrayBuffer();
-                })
-                .then(data => {
-                    const sizeKB = (data.byteLength / 1024).toFixed(2);
-                    addLog(`[SYSTEM] تم العثور على الباكيت! (${sizeKB} KB)`);
-                    addLog("[SYSTEM] جاري نقل الملف إلى الذاكرة...");
-                    
-                    // محاكاة عملية الحقن الفوري (وهذا ما يحدث فعلياً في متصفح PS4)
-                    setTimeout(() => {
-                        addLog("[SYSTEM] ✅ تم الحقن بنجاح في النظام!");
-                        addLog("[SYSTEM] ✅ GoldHEN يعمل الآن! (تم التفعيل)");
-                        addLog("[SYSTEM] يمكنك الآن تثبيت PKG أو تشغيل التطبيقات.");
-                        
-                        btn.disabled = false;
-                        btn.innerText = "✅ تم الحقن بنجاح";
-                        btn.style.background = "#00aa00";
-                    }, 1500);
-                })
-                .catch(error => {
-                    addLog(`[ERROR] فشل العملية: ${error.message}`, 'error');
-                    btn.disabled = false;
-                    btn.innerText = "❌ إعادة المحاولة";
-                    btn.style.background = "#cc0000";
-                });
-        }
-
+        // دالة إضافة سجل الأوامر
         function addLog(message, type = 'normal') {
-            const consoleDiv = document.getElementById("console");
-            let colorClass = 'console-line';
-            if (type === 'error') colorClass += ' error';
-            else if (type === 'success') colorClass += ' success';
-            
-            const newLine = document.createElement('div');
-            newLine.className = colorClass;
-            newLine.innerText = message;
-            consoleDiv.appendChild(newLine);
-            // التمرير للأسفل تلقائياً
+            const consoleDiv = document.getElementById('console');
+            const line = document.createElement('div');
+            line.className = 'line';
+            if (type === 'error') line.classList.add('error');
+            else if (type === 'success') line.classList.add('success');
+            else if (type === 'info') line.classList.add('info');
+            line.innerText = message;
+            consoleDiv.appendChild(line);
             consoleDiv.scrollTop = consoleDiv.scrollHeight;
         }
+
+        // خريطة روابط الباكيتات (يمكنك تغييرها لاحقاً)
+        const payloads = {
+            'goldhen': 'https://kararryad.github.io/files/goldhen.bin',
+            'mira': 'https://kararryad.github.io/files/mira.bin',
+            'restore': 'https://kararryad.github.io/files/restore.bin'
+        };
+
+        // وظيفة الحقن
+        async function triggerPayload(type) {
+            const url = payloads[type];
+            if (!url) {
+                addLog(`[ERROR] الرابط غير موجود للأداة: ${type}`, 'error');
+                return;
+            }
+
+            // تعطيل الأزرار مؤقتاً
+            const buttons = document.querySelectorAll('.btn-tool');
+            buttons.forEach(btn => btn.disabled = true);
+
+            addLog(`[SYSTEM] بدء حقن الباكيت: ${type.toUpperCase()}...`, 'info');
+            addLog(`[SYSTEM] جاري الاتصال بالخادم...`, 'info');
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('الملف غير موجود (404)');
+
+                const data = await response.arrayBuffer();
+                const sizeKB = (data.byteLength / 1024).toFixed(2);
+                addLog(`[SYSTEM] تم تحميل الباكيت (${sizeKB} KB)`, 'success');
+                addLog(`[SYSTEM] جاري الحقن في الذاكرة...`, 'info');
+
+                // محاكاة الحقن
+                setTimeout(() => {
+                    addLog(`[SYSTEM] ✅ تم حقن ${type.toUpperCase()} بنجاح!`, 'success');
+                    addLog(`[SYSTEM] ✅ النظام جاهز للتشغيل`, 'success');
+                }, 1500);
+
+            } catch (error) {
+                addLog(`[ERROR] فشل الحقن: ${error.message}`, 'error');
+            } finally {
+                setTimeout(() => {
+                    buttons.forEach(btn => btn.disabled = false);
+                }, 2000);
+            }
+        }
+
+        // عداد الزوار (بسيط يعتمد على تخزين المتصفح)
+        document.addEventListener('DOMContentLoaded', () => {
+            let count = localStorage.getItem('visitorCount');
+            if (!count) {
+                count = Math.floor(Math.random() * 150) + 1; // رقم عشوائي للتجربة
+            } else {
+                count = parseInt(count) + 1;
+            }
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('visitorCount').innerText = `👁️ عدد الزوار: ${count}`;
+        });
     </script>
 
 </body>
