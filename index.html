@@ -1,86 +1,23 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            /* خلفية مريحة للعين جداً */
-            background: linear-gradient(145deg, #0a192f, #020c1b);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Cairo', sans-serif;
-            padding: 20px;
-        }
-
-        .card {
-            background: rgba(10, 25, 47, 0.7);
-            backdrop-filter: blur(8px);
-            padding: 50px 40px;
-            border-radius: 30px;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            border: 1px solid rgba(100, 200, 255, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 20, 50, 0.8);
-        }
-
-        .hero-title {
-            font-size: 5.5rem;
-            font-weight: 900;
-            color: #5bc0ff;
-            text-shadow: 0 0 30px rgba(91, 192, 255, 0.3);
-            margin: 10px 0;
-            letter-spacing: 3px;
-            line-height: 1.2;
-        }
-
-        .sub-info {
-            font-size: 1.6rem;
-            color: #8ab4f8;
-            margin-top: 5px;
-            margin-bottom: 40px;
-            opacity: 0.8;
-            letter-spacing: 2px;
-        }
-
-        .launch-btn {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #5bc0ff, #0099ff);
-            color: #fff;
-            font-size: 2rem;
-            font-weight: 900;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 0 30px rgba(91, 192, 255, 0.3);
-            transition: transform 0.2s;
-        }
-
-        .launch-btn:active {
-            transform: scale(0.95);
-        }
-
-        @media (max-width: 600px) {
-            .hero-title { font-size: 4rem; }
-            .sub-info { font-size: 1.3rem; }
-            .launch-btn { font-size: 1.5rem; }
-        }
+        body { background: #0a192f; color: #5bc0ff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Cairo', sans-serif; }
+        .box { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; text-align: center; border: 1px solid #5bc0ff; }
+        h1 { font-size: 5rem; color: #5bc0ff; text-shadow: 0 0 20px #5bc0ff; margin: 0 0 10px 0; }
+        p { font-size: 1.5rem; color: #8ab4f8; margin: 10px 0 30px 0; }
+        button { background: #5bc0ff; color: white; border: none; padding: 15px 40px; font-size: 1.5rem; border-radius: 10px; cursor: pointer; width: 100%; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="hero-title">قاعه رياض</div>
-        <div class="sub-info">07736663121</div>
-        <button class="launch-btn" onclick="window.open('https://zecoxao.github.io/ntfonto/', '_blank')">▶ تشغيل النظام</button>
+    <div class="box">
+        <h1>قاعه رياض</h1>
+        <p>07736663121</p>
+        <button onclick="window.open('https://zecoxao.github.io/ntfonto/','_blank')">تشغيل النظام</button>
     </div>
 </body>
 </html>
