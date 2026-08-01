@@ -3,126 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad | 3D</title>
+    <title>kararryad | 3D Elite</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0;
-            padding: 0;
-            background: #0a0a0a;
+            background: radial-gradient(circle at 20% 20%, #0d0d0d, #000000);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             font-family: 'Cairo', sans-serif;
-            perspective: 1200px;
+            perspective: 1000px;
+            padding: 20px;
         }
-
-        /* البطاقة ثلاثية الأبعاد */
-        .card {
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-            padding: 40px 30px;
+        .main-card {
+            background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            max-width: 750px;
+            width: 100%;
             border-radius: 30px;
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 30px 40px rgba(0,0,0,0.8), 
-                        0 0 0 2px #FFD700 inset, 
-                        0 0 50px rgba(255, 215, 0, 0.3);
-            transform: rotateY(15deg) rotateX(10deg);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            padding: 40px 30px;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.8), 0 0 0 2px #FFD700 inset;
             position: relative;
+            transform: rotateY(10deg);
+            transition: transform 0.5s;
+            text-align: center;
         }
-
-        .card:hover {
-            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-            box-shadow: 0 40px 60px rgba(0,0,0,0.9), 0 0 0 3px #FFD700, 0 0 80px rgba(255, 215, 0, 0.5);
-        }
-
-        /* حلقة ذهبية دوارة حول البطاقة */
-        .card::before {
-            content: '';
+        .main-card:hover { transform: rotateY(0deg) scale(1.01); }
+        .glow-ring {
             position: absolute;
             top: -3px; left: -3px; right: -3px; bottom: -3px;
             border-radius: 32px;
-            background: conic-gradient(from 0deg, transparent, #FFD700, transparent 30%, #FFD700, transparent 60%, #FFD700, transparent 100%);
+            background: conic-gradient(from 0deg, #FFD700, transparent, #FFD700, transparent, #FFD700);
             z-index: -1;
-            animation: spinBorder 4s linear infinite;
-            filter: blur(2px);
+            animation: spin 4s linear infinite;
+            filter: blur(5px);
         }
-
-        @keyframes spinBorder {
-            100% { transform: rotate(360deg); }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        .profile-section {
+            margin-bottom: 30px;
         }
-
-        .logo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 4px solid #FFD700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        .profile-section img {
+            width: 150px; height: 150px; border-radius: 50%;
+            border: 4px solid #FFD700; box-shadow: 0 0 40px #FFD700;
             margin-bottom: 15px;
-            object-fit: cover;
-            animation: float 3s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
-
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .profile-section h1 {
+            font-size: 4rem; color: #FFD700; text-shadow: 0 0 20px #FFD700, 0 4px 0 #b8860b;
+            font-weight: 900; letter-spacing: 2px; margin: 10px 0;
+        }
+        .profile-section .phone {
+            font-size: 1.5rem; color: #aaa; background: rgba(255,215,0,0.1);
+            display: inline-block; padding: 8px 25px; border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.3);
         }
 
-        .name {
-            font-size: 4rem;
-            font-weight: 900;
-            color: #FFD700;
-            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 4px 0 #b8860b;
-            margin: 5px 0;
-            letter-spacing: 2px;
+        .launch-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px; padding: 25px; margin-top: 20px;
+            box-shadow: 0 0 20px rgba(255,215,0,0.1);
+            backdrop-filter: blur(5px);
         }
-
-        .phone {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #ffffff;
-            background: rgba(255, 215, 0, 0.15);
-            display: inline-block;
-            padding: 8px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-            margin: 10px 0 25px;
+        .launch-card p {
+            color: #ccc; margin-bottom: 15px; font-size: 1.2rem;
         }
-
-        .launch-btn {
-            display: inline-block;
-            background: #FFD700;
-            color: #000;
-            font-size: 1.4rem;
-            font-weight: 900;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 0 30px #FFD700;
-            transition: 0.3s;
-            border: 2px solid #FFD700;
+        .btn-tool {
+            display: inline-block; padding: 18px 60px; background: #FFD700;
+            color: #000; font-weight: 900; font-size: 1.8rem; text-decoration: none;
+            border-radius: 60px; box-shadow: 0 0 30px #FFD700;
+            transition: 0.3s; border: 2px solid #FFD700;
         }
-
-        .launch-btn:active {
-            transform: scale(0.95);
-        }
+        .btn-tool:active { transform: scale(0.95); }
+        .btn-tool:hover { box-shadow: 0 0 50px #FFD700; background: #ffe44d; }
 
         @media (max-width: 600px) {
-            .name { font-size: 3rem; }
-            .logo { width: 120px; height: 120px; }
+            .profile-section h1 { font-size: 3rem; }
+            .profile-section img { width: 120px; height: 120px; }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="https://i.postimg.cc/J0S31W8V/logo.png" class="logo" alt="شعار">
-        <div class="name">kararryad</div>
-        <div class="phone">07736663121</div>
-        <a href="https://ps4-exploit-host.netlify.app/" class="launch-btn" target="_blank">تشغيل الأداة</a>
+    <div class="main-card">
+        <div class="glow-ring"></div>
+        <div class="profile-section">
+            <img src="https://i.postimg.cc/J0S31W8V/logo.png" alt="شعار">
+            <h1>kararryad</h1>
+            <div class="phone">07736663121</div>
+        </div>
+
+        <div class="launch-card">
+            <p>بوابة التشغيل السريع</p>
+            <a href="https://ps4-exploit-host.netlify.app/" class="btn-tool" target="_blank">🚀 تشغيل الأداة</a>
+        </div>
     </div>
 </body>
 </html>
