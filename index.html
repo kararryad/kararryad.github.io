@@ -1,38 +1,92 @@
 <!DOCTYPE html>
-<html lang="en" manifest="cache.manifest">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSSFontFace UAF Exploit</title>
-    <link rel="stylesheet" href="includes/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>قاعه رياض | PS4 Tool</title>
+    <meta http-equiv="Cache-Control" content="max-age=31536000, must-revalidate, public, immutable">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(145deg, #020c1b, #0a192f);
+            padding: 20px;
+        }
+        .main-card {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 60px 40px;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            border: 2px solid #5bc0ff;
+            box-shadow: 0 0 60px rgba(91, 192, 255, 0.2);
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+        .main-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 80px rgba(91, 192, 255, 0.4);
+        }
+        .hero-name {
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: #5bc0ff;
+            text-shadow: 0 0 30px #5bc0ff, 0 4px 0 #0066cc;
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+        .phone-number {
+            font-size: 2rem;
+            color: #ffffff;
+            background: rgba(91, 192, 255, 0.15);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(91, 192, 255, 0.3);
+            margin-bottom: 40px;
+        }
+        .launch-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #5bc0ff, #0099ff);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 0 40px rgba(91, 192, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .launch-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 20px rgba(91, 192, 255, 0.5);
+        }
+        .launch-btn:hover {
+            box-shadow: 0 0 60px rgba(91, 192, 255, 0.6);
+        }
+        @media (max-width: 600px) {
+            .hero-name { font-size: 4rem; }
+            .phone-number { font-size: 1.5rem; }
+            .launch-btn { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
-    <h1>CSSFontFace UAF Exploit</h1>
-    <h3 id="UA">Running on:</h3>
-    <hr>
-    <div class="btn-container">
-        <form id="kernel-options">
-            <input type="radio" name="kernel" id="netctrl-exploit" value="netctrl">
-            <label for="netctrl-exploit">NetCtrl</label>
-            <input type="radio" name="kernel" id="lapse-exploit" value="lapse">
-            <label for="lapse-exploit">Lapse</label>
-        </form>
-        <button id="jailbreak">Jailbreak</button>
-        <div class="autoJb">
-            <label for="autoJbLabel">Auto Jailbreak</label>
-            <input class="mt-2" id="autoJbInput" type="checkbox">
-        </div>
+    <div class="main-card">
+        <div class="hero-name">قاعه رياض</div>
+        <div class="phone-number">07736663121</div>
+        <button class="launch-btn" onclick="window.open('https://zecoxao.github.io/ntfonto/', '_blank')">▶ تشغيل الأداة</button>
     </div>
-    <div class="main-layout">
-        <div class="media-box">
-            <div style="text-align:center; margin:10px 0; padding:10px; background:rgba(10,25,47,0.8); border-radius:15px; border:1px solid #5bc0ff; display:inline-block;">
-                <h1 style="color:#5bc0ff; font-size:2.5rem; margin:0; text-shadow:0 0 15px #5bc0ff;">قاعه رياض</h1>
-                <p style="color:#8ab4f8; font-size:1.2rem; margin:5px 0 0 0;">07736663121</p>
-            </div>
-        </div>
-        <pre id="console">Ready. Awaiting execution...</pre>
-    </div>
-    <script src="src/main.js"></script>
-    <script src="includes/script.js"></script>
 </body>
 </html>
