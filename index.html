@@ -1,124 +1,112 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kararryad | Hacker Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>kararryad | Dexter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Share Tech Mono', monospace;
-            padding: 20px;
+            font-family: 'Cairo', sans-serif;
             overflow: hidden;
-            color: #00ff00;
+            position: relative;
+            background: #000;
         }
 
-        /* خلفية الأكواد المتناثرة */
-        .hacker-bg {
+        /* خلفية ديكستر مورغان مع تأثير حركة بطيء (Zoom) */
+        .bg-layer {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: url('https://wallpapercave.com/wp/wp4158775.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4) contrast(1.1);
+            z-index: -2;
+            animation: cinematicZoom 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes cinematicZoom {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-2%, -2%); }
+        }
+
+        /* طبقة داكنة شفافة فوق الصورة لتوضيح النص */
+        .overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
             z-index: -1;
-            opacity: 0.1;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" fill="%2300ff00" font-size="10">01001010</text><text x="50" y="40" fill="%2300ff00" font-size="12">11010001</text><text x="20" y="70" fill="%2300ff00" font-size="8">00101110</text><text x="70" y="80" fill="%2300ff00" font-size="14">10110011</text><text x="40" y="95" fill="%2300ff00" font-size="11">01101001</text></svg>');
-            animation: scrollBg 20s linear infinite;
-        }
-
-        @keyframes scrollBg {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100px); }
         }
 
         .card {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 40px 30px;
-            border-radius: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 50px 40px;
+            border-radius: 20px;
             width: 100%;
-            max-width: 700px;
-            border: 2px solid #00ff00;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2), inset 0 0 30px rgba(0, 255, 0, 0.1);
+            max-width: 650px;
             text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
             position: relative;
-        }
-
-        /* تأثير الـ CRT (خطوط أفقية) */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
-            pointer-events: none;
             z-index: 10;
+            transform: scale(1);
+            transition: transform 0.4s;
         }
-
-        .status-bar {
-            color: #888;
-            text-align: left;
-            border-bottom: 1px solid #00ff00;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .status-bar span {
-            color: #00ff00;
-        }
+        .card:hover { transform: scale(1.02); }
 
         .hero-name {
             font-size: 5rem;
-            font-weight: bold;
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.5);
-            margin: 20px 0;
-            letter-spacing: 5px;
-            animation: glitch 0.5s infinite;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.5); }
-            50% { text-shadow: 2px 0 #00ff00, -2px 0 #ff0000, 0 0 20px #00ff00; }
-            100% { text-shadow: 0 0 20px #00ff00, 0 0 40px rgba(0, 255, 0, 0.5); }
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 0 0 30px #FFD700, 0 4px 0 #996515;
+            margin: 10px 0;
+            letter-spacing: 2px;
         }
 
         .phone-number {
             font-size: 2rem;
-            color: #888;
-            margin-bottom: 40px;
-            border: 1px solid #333;
-            padding: 10px 20px;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(255, 215, 0, 0.15);
+            padding: 10px 30px;
+            border-radius: 50px;
             display: inline-block;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
         .launch-btn {
-            background: #000;
-            color: #00ff00;
-            border: 2px solid #00ff00;
-            padding: 15px;
+            display: block;
             width: 100%;
-            font-size: 1.8rem;
-            font-family: 'Share Tech Mono', monospace;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-        }
-
-        .launch-btn:active {
-            background: #00ff00;
+            padding: 18px;
+            background: #FFD700;
             color: #000;
+            font-size: 2rem;
+            font-weight: 900;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 30px #FFD700;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.2s;
+        }
+        .launch-btn:active {
             transform: scale(0.95);
+            background: #fff0a0;
         }
 
-        /* شاشة التحميل (الهاكرز) */
+        /* شاشة التحميل السينمائية */
         .transition-screen {
             display: none;
             position: fixed;
@@ -129,44 +117,50 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            border: 2px solid #00ff00;
+            color: #FFD700;
         }
 
         .transition-screen h2 {
             font-size: 3rem;
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00;
-            animation: blink 1s infinite;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px #FFD700;
+            margin-bottom: 20px;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
+        .transition-screen .loader {
+            width: 60px; height: 60px;
+            border: 6px solid #222;
+            border-top: 6px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @media (max-width: 600px) {
             .hero-name { font-size: 3.5rem; }
-            .phone-number { font-size: 1.5rem; }
+            .launch-btn { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="hacker-bg"></div>
+    <!-- صورة خلفية ديكستر متحركة -->
+    <div class="bg-layer"></div>
+    <div class="overlay"></div>
 
     <div class="card">
-        <div class="status-bar">
-            <span>C:\</span>Users\kararryad &gt; <span>System Ready</span>
-        </div>
-
         <div class="hero-name">kararryad</div>
         <div class="phone-number">07736663121</div>
-
-        <button class="launch-btn" onclick="activateLaunch()">[ Execute System ]</button>
+        <button class="launch-btn" onclick="activateLaunch()">▶ تشغيل النظام</button>
     </div>
 
     <div id="transition" class="transition-screen">
-        <h2>◼ ACCESS GRANTED</h2>
-        <p style="color:#888; margin-top:20px;">Initializing... Loading Payload...</p>
+        <h2>EXECUTING</h2>
+        <div class="loader"></div>
+        <p style="color:#aaa; margin-top:15px;">جاري تجهيز البيئة...</p>
     </div>
 
     <script>
