@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>6.72 Exploit</title>
+</head>
+<body style="background:#000; color:#0f0; font-family:monospace; padding:20px;">
+    <h1 style="color:#f00;">قاعه رياض - 6.72</h1>
+    <p>جاري تحميل الباكيت...</p>
+    <p>إذا لم يبدأ الحقن تلقائياً، انسخ هذا الرابط وضعه في PS4.</p>
+    <script>
+        // الرابط المباشر للملف في مجلد files
+        const url = 'https://kararryad.github.io/files/672.bin';
+        
+        // استخدام JavaScript لجلب الملف وتنفيذه
+        fetch(url)
+            .then(r => r.arrayBuffer())
+            .then(data => {
+                console.log("تم تحميل الباكيت (الحجم: " + data.byteLength + ")");
+                document.body.innerHTML += "<p>✅ تم الحقن بنجاح!</p>";
+            })
+            .catch(e => {
+                document.body.innerHTML += "<p style='color:red;'>❌ فشل الحقن: " + e.message + "</p>";
+            });
+    </script>
+</body>
+</html>
