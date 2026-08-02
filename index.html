@@ -3,65 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض</title>
+    <title>قاعه رياض - لوحة التحكم المتطورة</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: #0a0a0a;
+            background: #0a0a0a;
+            background-image: radial-gradient(circle at 20% 30%, #1a0a0a 0%, #000 80%);
             color: #fff;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center;
             padding: 20px;
         }
         .container {
-            max-width: 500px;
             width: 100%;
-            background: #111;
-            border: 1px solid #2a2a2a;
-            border-radius: 20px;
-            padding: 30px;
+            max-width: 700px;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(204, 0, 0, 0.3);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(204, 0, 0, 0.15);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #cc0000;
-            text-shadow: 0 0 20px rgba(204,0,0,0.4);
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #cc0000, #330000, #cc0000);
+            border-radius: 32px;
+            z-index: -1;
+            background-size: 400% 400%;
+            animation: glowing 6s ease-in-out infinite;
+        }
+        @keyframes glowing {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo { font-size: 3.2rem; font-weight: 900; color: #cc0000; text-shadow: 0 0 30px rgba(204,0,0,0.5); letter-spacing: 1px; }
+        .sub-title { color: #888; margin: 10px 0 20px; font-size: 1rem; border-bottom: 1px solid #222; padding-bottom: 15px; }
+
+        /* صندوق الأوامر */
+        .console-box {
+            background: #0d0d0d;
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 120px;
+            margin-bottom: 20px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            direction: ltr;
+            color: #00ff00;
+            overflow-y: auto;
+        }
+        .console-box .line { margin-bottom: 8px; }
+        .console-box .line.error { color: #ff4444; }
+        .console-box .line.success { color: #44ff44; }
+        .console-box .line.countdown { color: #ffaa00; font-size: 1.2rem; font-weight: bold; }
+
+        /* أزرار النسخ */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
         }
         .btn {
-            display: block;
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
+            padding: 15px 5px;
+            border-radius: 12px;
             text-decoration: none;
             color: #fff;
             font-weight: bold;
+            font-size: 0.9rem;
             transition: 0.3s;
+            cursor: pointer;
+            display: block;
+            text-align: center;
         }
-        .btn:hover {
+        .btn:hover { transform: translateY(-3px); background: #cc0000; border-color: #cc0000; box-shadow: 0 0 15px rgba(204,0,0,0.3); }
+        .btn.active { background: #cc0000; border-color: #cc0000; }
+
+        /* زر الحقن الرئيسي */
+        .btn-inject {
+            width: 100%;
             background: #cc0000;
-            transform: translateY(-3px);
+            color: #fff;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(204,0,0,0.3);
+            position: relative;
         }
-        .btn.gold { border-color: #cc0000; }
-        .btn.blue { border-color: #00aaff; }
-        .btn.green { border-color: #00ff00; }
-        .footer { margin-top: 30px; color: #444; border-top: 1px solid #222; padding-top: 20px; }
+        .btn-inject:hover { background: #ff1a1a; box-shadow: 0 0 30px rgba(204,0,0,0.6); }
+        .btn-inject:disabled {
+            background: #444;
+            cursor: not-allowed;
+            box-shadow: none;
+            color: #888;
+        }
+        
+        .footer { margin-top: 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #222; padding-top: 15px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="logo">⚡ قاعه رياض</div>
-        <h3 style="color:#777; margin: 10px 0 20px;">اختر نسخة جهازك</h3>
+        <div class="sub-title">لوحة حقن متطورة (عد 10 ثوانٍ)</div>
 
-        <a href="https://kararryad.github.io/hosts/672.html" class="btn gold">💀 6.72</a>
-        <a href="https://kararryad.github.io/hosts/900.html" class="btn blue">🔰 9.00</a>
-        <a href="https://kararryad.github.io/hosts/1100.html" class="btn green">🔰 11.00</a>
+        <div class="console-box" id="console">
+            <div class="line">[SYSTEM] جاهز. اختر النسخة.</div>
+        </div>
 
+        <div class="grid">
+            <div class="btn" onclick="selectVersion('672')">💀 6.72</div>
+            <div class="btn" onclick="selectVersion('900')">🔰 9.00</div>
+            <div class="btn" onclick="selectVersion('1100')">🔰 11.00</div>
+        </div>
+
+        <button class="btn-inject" id="injectBtn" onclick="startCountdown()">🚀 بدأ الحقن (عد 10 ثوانٍ)</button>
+        
         <div class="footer">&copy; 2026 قاعه رياض</div>
     </div>
+
+    <script>
+        let selectedVersion = '900'; // الافتراضي
+        let countdownInterval;
+        
+        // دالة اختيار النسخة
+        function selectVersion(version) {
+            selectedVersion = version;
+            // تحديث شكل الأزرار
+            document.querySelectorAll('.grid .btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            addLog(`[SYSTEM] تم تحديد النسخة: ${version.toUpperCase()}`);
+            document.getElementById('injectBtn').disabled = false;
+            document.getElementById('injectBtn').innerText = "🚀 بدأ الحقن (عد 10 ثوانٍ)";
+        }
+
+        // دالة إضافة سجل
+        function addLog(msg, type = 'normal') {
+            const consoleDiv = document.getElementById('console');
+            const line = document.createElement('div');
+            line.className = 'line';
+            if (type === 'error') line.classList.add('error');
+            else if (type === 'success') line.classList.add('success');
+            else if (type === 'countdown') line.classList.add('countdown');
+            line.innerText = msg;
+            consoleDiv.appendChild(line);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // دالة العد التنازلي
+        function startCountdown() {
+            const btn = document.getElementById('injectBtn');
+            btn.disabled = true;
+            
+            let counter = 10;
+            addLog(`[COUNTDOWN] بدء العد التنازلي (${counter})...`, 'countdown');
+            btn.innerText = `⏳ جاري الحقن خلال ${counter} ثانية...`;
+
+            countdownInterval = setInterval(() => {
+                counter--;
+                if (counter > 0) {
+                    addLog(`[COUNTDOWN] ${counter}...`, 'countdown');
+                    btn.innerText = `⏳ جاري الحقن خلال ${counter} ثانية...`;
+                } else {
+                    clearInterval(countdownInterval);
+                    addLog(`[COUNTDOWN] 0! بدء الحقن الفوري...`, 'success');
+                    btn.innerText = `⚡ جاري الحقن الآن...`;
+                    performInjection();
+                }
+            }, 1000);
+        }
+
+        // دالة الحقن الفعلية
+        function performInjection() {
+            const url = `https://kararryad.github.io/hosts/${selectedVersion}.html`;
+            addLog(`[SYSTEM] جاري الاتصال بالملف: ${selectedVersion.toUpperCase()}`);
+            
+            // محاكاة عملية الحقن (في الواقع ستوجه المستخدم للصفحة)
+            setTimeout(() => {
+                addLog(`[SYSTEM] ✅ تم تحميل الباكيت بنجاح!`, 'success');
+                addLog(`[SYSTEM] يتم توجيهك إلى صفحة الحقن...`, 'success');
+                
+                // فتح الرابط في نفس النافذة (لأن الغالبية العظمى من الحقن تتم عبر HTML)
+                window.location.href = url;
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
