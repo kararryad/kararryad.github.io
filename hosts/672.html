@@ -1,27 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>6.72 Exploit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قاعه رياض - تشغيل 6.72</title>
+    <!-- أكواد الكاتش -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0a;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 0, 100, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(0, 150, 255, 0.05) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+
+        .inject-card {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* حافة مضيئة خاصة بـ 6.72 */
+        .inject-card::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #ff0055, #ffaa00, #00d2ff, #ff0055);
+            background-size: 400% 400%;
+            border-radius: 32px;
+            z-index: -1;
+            animation: shift 5s ease-in-out infinite;
+        }
+        @keyframes shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff0055, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        .sub-title {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .loader-container {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .status-text {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .status-text.error { color: #ff4444; }
+        .status-text.success { color: #44ff44; }
+
+        .loader-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .loader-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff0055, #ffaa00);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .loader-bar .fill.success { background: #44ff44; }
+        .loader-bar .fill.error { background: #ff4444; }
+
+        .icon-status {
+            font-size: 3rem;
+            margin-top: 10px;
+        }
+
+        .footer {
+            color: #444;
+            font-size: 0.8rem;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
+        }
+    </style>
 </head>
-<body style="background:#000; color:#0f0; font-family:monospace; padding:20px;">
-    <h1 style="color:#f00;">قاعه رياض - 6.72</h1>
-    <p>جاري تحميل الباكيت...</p>
-    <p>إذا لم يبدأ الحقن تلقائياً، انسخ هذا الرابط وضعه في PS4.</p>
+<body>
+
+    <div class="inject-card">
+        <div class="title">⚡ قاعه رياض</div>
+        <div class="sub-title">حقن باكيت 6.72</div>
+
+        <div class="loader-container">
+            <div class="status-text" id="status">جاري تحميل الباكيت...</div>
+            <div class="loader-bar"><div class="fill" id="progressFill"></div></div>
+            <div class="icon-status" id="iconStatus">⏳</div>
+        </div>
+
+        <div class="footer">بغداد · قطاع 57</div>
+    </div>
+
     <script>
-        // الرابط المباشر للملف في مجلد files
+        const statusEl = document.getElementById('status');
+        const progressFill = document.getElementById('progressFill');
+        const iconStatus = document.getElementById('iconStatus');
+
+        // الرابط المباشر للملف
         const url = 'https://kararryad.github.io/files/672.bin';
-        
-        // استخدام JavaScript لجلب الملف وتنفيذه
-        fetch(url)
-            .then(r => r.arrayBuffer())
-            .then(data => {
-                console.log("تم تحميل الباكيت (الحجم: " + data.byteLength + ")");
-                document.body.innerHTML += "<p>✅ تم الحقن بنجاح!</p>";
-            })
-            .catch(e => {
-                document.body.innerHTML += "<p style='color:red;'>❌ فشل الحقن: " + e.message + "</p>";
-            });
+
+        async function injectPayload() {
+            try {
+                statusEl.innerText = "جاري الاتصال بالخادم...";
+                progressFill.style.width = "20%";
+
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('الملف غير موجود');
+
+                progressFill.style.width = "60%";
+                statusEl.innerText = "جاري تحميل الباكيت...";
+
+                const data = await response.arrayBuffer();
+                const size = (data.byteLength / 1024).toFixed(2);
+
+                progressFill.style.width = "100%";
+                statusEl.innerText = `✅ تم التحميل (${size} KB)`;
+                statusEl.className = "status-text success";
+                iconStatus.innerText = "✅";
+                progressFill.className = "fill success";
+
+                setTimeout(() => {
+                    statusEl.innerText = "✅ تم الحقن بنجاح!";
+                    iconStatus.innerText = "🎉";
+                }, 1000);
+
+            } catch (error) {
+                statusEl.innerText = `❌ فشل: ${error.message}`;
+                statusEl.className = "status-text error";
+                iconStatus.innerText = "❌";
+                progressFill.className = "fill error";
+            }
+        }
+
+        window.onload = injectPayload;
     </script>
 </body>
 </html>
