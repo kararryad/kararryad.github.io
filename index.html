@@ -2,13 +2,12 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- أكواد الكاتش (تخزين الموقع في متصفح PS4) -->
+    <!-- أكواد الكاتش -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>قاعه رياض | واجهة متطورة</title>
     <style>
-        /* استيراد خطوط عصرية واحترافية */
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
@@ -29,7 +28,6 @@
             overflow: hidden;
         }
 
-        /* الحاوية الرئيسية - تصميم زجاجي فاخر */
         .container {
             width: 100%;
             max-width: 550px;
@@ -46,7 +44,6 @@
             overflow: hidden;
         }
 
-        /* حافة متدرجة متحركة */
         .container::before {
             content: '';
             position: absolute;
@@ -63,7 +60,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* حالة التشغيل (عند الضغط على الزر) */
         .container.running {
             max-width: 800px;
             background: rgba(5, 5, 5, 0.9);
@@ -74,7 +70,6 @@
             background: linear-gradient(45deg, #00ffff, #0066ff, #00ffff);
         }
 
-        /* الرأس */
         .header {
             display: flex;
             flex-direction: column;
@@ -82,21 +77,22 @@
             margin-bottom: 30px;
             animation: fadeIn 1s ease-out;
         }
-        .logo-icon { font-size: 3.5rem; margin-bottom: 5px; display: inline-block; animation: float 3s ease-in-out infinite; }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        
+        .logo-img {
+            width: 220px;
+            max-width: 85%;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+            filter: drop-shadow(0 0 20px rgba(100, 0, 255, 0.4));
+            transition: transform 0.3s ease;
         }
-        .site-title {
-            font-size: 2.8rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #ff0080, #ff8c00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 1px;
+        .logo-img:hover {
+            transform: scale(1.05);
         }
+
+        /* تم حذف النص المكرر هنا */
+
         .sub-title {
             color: #888;
             font-size: 0.9rem;
@@ -108,7 +104,6 @@
             letter-spacing: 2px;
         }
 
-        /* صندوق الأوامر المتطور */
         .console-box {
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -136,7 +131,6 @@
         .console-box .line.dark { color: #ffaa00; font-weight: bold; }
         .console-box .line.info { color: #00d2ff; }
 
-        /* أزرار الاختيار */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -161,7 +155,6 @@
         .btn-select:hover { transform: scale(1.05); border-color: rgba(0, 255, 255, 0.5); color: #fff; background: rgba(0, 255, 255, 0.05); }
         .btn-select.active { background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 100, 255, 0.1)); border: 1px solid #00ffff; color: #fff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.1); }
 
-        /* زر الحقن الفاخر */
         .btn-inject {
             width: 100%;
             padding: 20px;
@@ -211,8 +204,13 @@
 
     <div class="container" id="mainContainer">
         <div class="header">
-            <div class="logo-icon">🏛️</div>
-            <div class="site-title">قاعه رياض</div>
+            <!-- اللوجو هو الذي يحمل اسم الموقع الآن -->
+            <img src="https://kararryad.github.io/files/assets/logo.png" 
+                 alt="قاعه رياض" 
+                 class="logo-img">
+                 
+            <!-- تم حذف النص المكرر هنا تماماً -->
+                 
             <div class="sub-title">بغداد · قطاع 57</div>
         </div>
 
@@ -268,7 +266,6 @@
             const container = document.getElementById('mainContainer');
             const btn = document.getElementById('injectBtn');
             
-            // تفعيل التصميم المتطور عند الضغط
             container.classList.add('running');
             btn.disabled = true;
             btn.classList.add('pulse');
