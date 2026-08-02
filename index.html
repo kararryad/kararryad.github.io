@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - The Godfather</title>
+    <title>قاعه رياض - السينما</title>
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
-    <!-- استيراد خط كلاسيكي -->
+    <!-- استيراد الخطوط الكلاسيكية -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #0a0a0a;
-            background: radial-gradient(circle at 30% 30%, #1a1a1a 0%, #000000 100%);
+            /* خلفية سينمائية داكنة */
+            background: #000000 url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/The_Godfather_Logo.svg/1200px-The_Godfather_Logo.svg.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -19,127 +21,179 @@
             font-family: 'Tajawal', sans-serif;
             padding: 20px;
         }
+        /* طبقة داكنة فوق الصورة لجعل النص واضحاً */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
         .container {
+            position: relative;
+            z-index: 1;
             width: 100%;
-            max-width: 750px;
-            background: rgba(10, 10, 10, 0.9);
-            border: 1px solid rgba(212, 175, 55, 0.4); /* لون الذهب الكلاسيكي */
+            max-width: 700px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 30px;
             padding: 40px 30px;
-            box-shadow: 0 30px 80px rgba(212, 175, 55, 0.05), inset 0 0 60px rgba(212, 175, 55, 0.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
             text-align: center;
-            position: relative;
         }
-        /* العنوان الرئيسي (أسلوب العراب) */
-        .godfather-title {
+
+        /* الاسم الكبير (بدون ألوان) */
+        .main-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 4.5rem; /* تم التكبير */
             font-weight: 900;
-            color: #d4af37; /* الذهب */
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.2), 0 4px 8px rgba(0,0,0,0.8);
+            color: #d4af37; /* لون ذهبي داكن */
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
             letter-spacing: 2px;
             margin-bottom: 5px;
-            position: relative;
-        }
-        .godfather-title::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #d4af37, transparent);
-            margin: 10px auto 0;
         }
         .sub-title {
             color: #888;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
+            font-size: 1rem;
+            letter-spacing: 2px;
             margin-bottom: 30px;
             font-family: 'Playfair Display', serif;
         }
 
-        /* نظام الأزرار ثلاثية الأبعاد */
+        /* الأزرار بدون ألوان زاهية */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
         }
         .btn-3d {
             display: block;
             text-decoration: none;
-            padding: 25px 15px;
-            border-radius: 20px;
-            background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px 10px;
+            border-radius: 15px;
+            background: #111111;
+            border: 1px solid #333;
             color: #d4af37;
             font-weight: bold;
-            font-size: 1.2rem;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 0 #000, 0 15px 30px rgba(0,0,0,0.5);
+            font-size: 1.1rem;
+            transition: 0.3s;
             text-align: center;
             font-family: 'Tajawal', sans-serif;
+            box-shadow: 0 5px 0 #000;
         }
-        /* تأثير الارتفاع عند التمرير */
         .btn-3d:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 0 #000, 0 20px 40px rgba(0,0,0,0.6);
+            background: #1a1a1a;
             border-color: #d4af37;
-            background: linear-gradient(180deg, #2a1a0a, #1a1a1a);
+            transform: translateY(-3px);
             color: #fff;
         }
-        .btn-3d .icon {
-            display: block;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        .btn-3d .icon { display: block; font-size: 2.2rem; margin-bottom: 8px; }
+        .btn-3d .small { font-size: 0.8rem; color: #666; display: block; }
+
+        /* زر الحقن (مع العد 4 ثوانٍ) */
+        .inject-area {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 25px;
         }
-        .btn-3d .small {
-            font-size: 0.8rem;
+        .btn-inject {
+            width: 100%;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 1px solid #d4af37;
+            background: transparent;
+            color: #d4af37;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 0 #000;
+        }
+        .btn-inject:hover { background: #d4af37; color: #000; transform: translateY(-3px); }
+        .btn-inject:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #222;
             color: #666;
-            display: block;
-            margin-top: 5px;
+            transform: none;
         }
-        .btn-3d:hover .small { color: #aaa; }
+        #countdownDisplay {
+            display: block;
+            margin-top: 15px;
+            font-size: 2rem;
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+        }
 
         .footer {
-            margin-top: 40px;
+            margin-top: 30px;
             color: #444;
             font-size: 0.8rem;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
             padding-top: 20px;
             font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
         }
-        .footer strong { color: #d4af37; }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
-        <div class="godfather-title">قاعه رياض</div>
-        <div class="sub-title">The Godfather · بغداد قطاع 57</div>
+        <div class="main-title">قاعه رياض</div>
+        <div class="sub-title">بغداد · قطاع 57</div>
 
         <div class="grid">
             <a href="https://kararryad.github.io/hosts/672.html" class="btn-3d">
                 <span class="icon">💀</span>
-                6.72 <span class="small">GoldHEN كلاسيكي</span>
+                6.72 <span class="small">GoldHEN</span>
             </a>
             <a href="https://kararryad.github.io/hosts/900.html" class="btn-3d">
                 <span class="icon">🔰</span>
-                9.00 <span class="small">GoldHEN v2.4</span>
+                9.00 <span class="small">GoldHEN</span>
             </a>
             <a href="https://kararryad.github.io/hosts/1100.html" class="btn-3d">
                 <span class="icon">🌐</span>
-                11.00 <span class="small">Webkit Only</span>
+                11.00 <span class="small">Webkit</span>
             </a>
             <a href="https://kararryad.github.io/files/cheats.zip" class="btn-3d">
                 <span class="icon">📦</span>
-                الشفرات <span class="small">حزمة Cheats</span>
+                الشفرات <span class="small">Cheats</span>
             </a>
         </div>
 
-        <div class="footer">
-            <strong>قاعه رياض</strong> · مقدمة من <strong>بغداد</strong>
+        <div class="inject-area">
+            <button class="btn-inject" id="injectBtn" onclick="startCountdown()">🚀 تشغيل الحقن (4 ثوانٍ)</button>
+            <div id="countdownDisplay"></div>
         </div>
+
+        <div class="footer">قاعه رياض · مقدمة من بغداد</div>
     </div>
+
+    <script>
+        function startCountdown() {
+            const btn = document.getElementById('injectBtn');
+            const display = document.getElementById('countdownDisplay');
+            btn.disabled = true;
+            
+            let counter = 4;
+            display.innerText = `⏳ ${counter}`;
+            
+            const interval = setInterval(() => {
+                counter--;
+                if (counter > 0) {
+                    display.innerText = `⏳ ${counter}`;
+                } else {
+                    clearInterval(interval);
+                    display.innerText = "✅ جاري الحقن...";
+                    btn.innerText = "⚡ جاري التنفيذ";
+                    
+                    // هنا تضع الرابط الذي تريد التوجه إليه بعد العد
+                    setTimeout(() => {
+                        window.location.href = "https://kararryad.github.io/hosts/900.html";
+                    }, 1000);
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
