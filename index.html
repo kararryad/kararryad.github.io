@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - Dexter Protocol</title>
+    <title>قاعه رياض | بغداد - قطاع 57</title>
     <style>
-        /* إعدادات أساسية */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background: #080808;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0d0d;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 150, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(255, 0, 100, 0.05) 0%, transparent 40%);
+            color: #e0e0e0;
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -19,141 +23,180 @@
             padding: 20px;
         }
 
-        /* الحاوية الرئيسية مع الصورة */
         .container {
             width: 100%;
-            max-width: 800px;
-            position: relative;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(139, 0, 0, 0.4);
-            /* إضافة صورة ديكستر من الإنترنت */
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Dexter_Morgan_%28Michael_C._Hall%29.jpg/640px-Dexter_Morgan_%28Michael_C._Hall%29.jpg');
-            background-size: cover;
-            background-position: center 30%;
-            background-color: #111; /* لون احتياطي */
+            max-width: 750px;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
             padding: 40px 30px;
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* طبقة سوداء فوق الصورة لجعل النص مقروءاً */
+        /* تأثير الحافة المتدرجة الساحرة */
         .container::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, rgba(139,0,0,0.6) 100%);
-            z-index: 1;
-            pointer-events: none;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5, #ff0055, #00d2ff);
+            background-size: 400% 400%;
+            border-radius: 32px;
+            z-index: -1;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* جميع المحتويات فوق الطبقة */
-        .content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
+        /* الرأس */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+            animation: fadeIn 1s ease-out;
         }
-
-        /* أنميشن دخول النص */
-        .title-main {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #cc0000;
-            text-shadow: 0 0 30px rgba(204, 0, 0, 0.5);
-            letter-spacing: 3px;
+        .logo-icon {
+            font-size: 3rem;
             margin-bottom: 5px;
-            animation: fadeInDown 1s ease-out;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .site-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5, #ff0055);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            letter-spacing: 1px;
         }
         .sub-title {
-            color: #aaa;
-            font-size: 1rem;
-            letter-spacing: 5px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+            font-size: 1.1rem;
+            margin-top: 5px;
             padding-bottom: 15px;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
         }
+        .sub-title span { color: #00d2ff; font-weight: bold; }
 
         /* صندوق الأوامر */
         .console-box {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(204, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 20px;
-            min-height: 120px;
+            min-height: 110px;
             margin-bottom: 25px;
             text-align: left;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
             direction: ltr;
             color: #00ff00;
-            backdrop-filter: blur(5px);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
             overflow-y: auto;
-            animation: fadeIn 1.2s ease-out 0.4s both;
+            animation: fadeIn 1.2s ease-out 0.2s both;
         }
         .console-box .line { margin-bottom: 8px; }
         .console-box .line.error { color: #ff4444; }
         .console-box .line.success { color: #44ff44; }
-        .console-box .line.dark { color: #ffaa00; font-weight: bold; text-shadow: 0 0 10px rgba(255,170,0,0.3); }
+        .console-box .line.dark { color: #ffaa00; font-weight: bold; }
+        .console-box .line.info { color: #00d2ff; }
 
-        /* أزرار النسخ */
+        /* أزرار الاختيار */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 30px;
+            animation: fadeIn 1.2s ease-out 0.4s both;
         }
-        .btn-version {
-            background: rgba(20, 20, 20, 0.9);
-            border: 1px solid #333;
+        .btn-select {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 15px 5px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
-            color: #fff;
+            color: #aaa;
             font-weight: bold;
-            font-size: 0.9rem;
-            transition: 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             display: block;
             text-align: center;
-            backdrop-filter: blur(2px);
-            animation: fadeInUp 1s ease-out 0.6s both;
+            font-family: 'Tajawal', sans-serif;
         }
-        .btn-version:nth-child(2) { animation-delay: 0.7s; }
-        .btn-version:nth-child(3) { animation-delay: 0.8s; }
-        .btn-version:hover { border-color: #cc0000; transform: translateY(-3px); box-shadow: 0 5px 20px rgba(204,0,0,0.3); }
-        .btn-version.active {
-            background: rgba(139, 0, 0, 0.7);
-            border-color: #cc0000;
+        .btn-select:hover {
+            transform: scale(1.05);
+            border-color: rgba(0, 210, 255, 0.5);
             color: #fff;
-            box-shadow: 0 0 20px rgba(204,0,0,0.4);
+            background: rgba(0, 210, 255, 0.05);
+        }
+        .btn-select.active {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.15), rgba(58, 123, 213, 0.15));
+            border-image: linear-gradient(135deg, #00d2ff, #3a7bd5) 1;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+        }
+        /* تلوين الأزرار حسب النسخة */
+        .btn-select[data-version="672"]:hover, .btn-select[data-version="672"].active {
+            border-color: #ff0055;
+            background: rgba(255, 0, 85, 0.1);
+        }
+        .btn-select[data-version="900"]:hover, .btn-select[data-version="900"].active {
+            border-color: #00d2ff;
+            background: rgba(0, 210, 255, 0.1);
+        }
+        .btn-select[data-version="1100"]:hover, .btn-select[data-version="1100"].active {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
         }
 
-        /* زر الحقن */
+        /* زر الحقن الرئيسي */
         .btn-inject {
             width: 100%;
-            background: linear-gradient(180deg, #cc0000, #8b0000);
-            color: #fff;
-            border: none;
             padding: 18px;
-            border-radius: 12px;
+            border-radius: 15px;
             font-size: 1.4rem;
             font-weight: 900;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 30px rgba(204,0,0,0.3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: fadeInUp 1s ease-out 0.9s both;
+            border: none;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            box-shadow: 0 5px 30px rgba(0, 210, 255, 0.2);
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1.2s ease-out 0.6s both;
         }
+        .btn-inject::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+        .btn-inject:hover::after { opacity: 1; left: 100%; }
         .btn-inject:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 50px rgba(204,0,0,0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(0, 210, 255, 0.4);
         }
         .btn-inject:disabled {
             background: #333;
@@ -162,81 +205,63 @@
             box-shadow: none;
             transform: none;
         }
-        /* أنميشن نبض للزر عند التفعيل */
+        .btn-inject:disabled::after { opacity: 0; }
+
+        /* أنميشن نبض عند التفعيل */
         .btn-inject.pulse {
             animation: pulse 1.5s infinite;
         }
-
-        /* أنميشن النبض */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(204, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(204, 0, 0, 0); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.5); }
+            70% { box-shadow: 0 0 0 20px rgba(0, 210, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* تذييل الصفحة */
         .footer {
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.8rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            animation: fadeIn 1.5s ease-out 1s both;
-        }
-        .footer .quote {
-            color: #888;
-            font-style: italic;
+            margin-top: 25px;
+            color: #555;
             font-size: 0.9rem;
-            margin-bottom: 5px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
+            animation: fadeIn 1s ease-out 0.8s both;
         }
-
-        @media (max-width: 600px) {
-            .title-main { font-size: 1.8rem; }
-            .container { padding: 20px 15px; min-height: 500px; }
+        .footer .location {
+            color: #00d2ff;
+            font-weight: bold;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="content">
-            <!-- الرأس -->
-            <div class="title-main">⚡ قاعه رياض</div>
-            <div class="sub-title">Dexter Morgan // 4 Seconds Protocol</div>
+        <div class="header">
+            <div class="logo-icon">🏛️</div>
+            <div class="site-title">قاعه رياض</div>
+            <div class="sub-title">بغداد · <span>قطاع 57</span> · منصة الحقن</div>
+        </div>
 
-            <!-- صندوق الأوامر -->
-            <div class="console-box" id="console">
-                <div class="line">[SYSTEM] Tonight's the night.</div>
-                <div class="line">[SYSTEM] Target acquired. Select version.</div>
-            </div>
+        <div class="console-box" id="console">
+            <div class="line info">[SYSTEM] النظام جاهز.</div>
+            <div class="line info">[SYSTEM] اختر النسخة واضغط الحقن.</div>
+        </div>
 
-            <!-- أزرار النسخ -->
-            <div class="grid">
-                <div class="btn-version" onclick="selectVersion('672', this)">💀 6.72</div>
-                <div class="btn-version active" onclick="selectVersion('900', this)">🔰 9.00</div>
-                <div class="btn-version" onclick="selectVersion('1100', this)">🔰 11.00</div>
-            </div>
+        <div class="grid">
+            <div class="btn-select" data-version="672" onclick="selectVersion('672', this)">💀 6.72</div>
+            <div class="btn-select active" data-version="900" onclick="selectVersion('900', this)">🔰 9.00</div>
+            <div class="btn-select" data-version="1100" onclick="selectVersion('1100', this)">🔰 11.00</div>
+        </div>
 
-            <!-- زر الحقن -->
-            <button class="btn-inject" id="injectBtn" onclick="startCountdown()">🚀 INJECT (4s)</button>
-            
-            <!-- التذييل -->
-            <div class="footer">
-                <div class="quote">"Dark Passenger is watching..."</div>
-                &copy; 2026 قاعه رياض
-            </div>
+        <button class="btn-inject" id="injectBtn" onclick="startCountdown()">🚀 الحقن (4 ثوانٍ)</button>
+        
+        <div class="footer">
+            <div class="location">📍 بغداد - قطاع 57</div>
+            &copy; 2026 قاعه رياض
         </div>
     </div>
 
@@ -246,12 +271,13 @@
 
         function selectVersion(version, element) {
             selectedVersion = version;
-            document.querySelectorAll('.btn-version').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.btn-select').forEach(btn => btn.classList.remove('active'));
             if(element) element.classList.add('active');
-            addLog(`[SYSTEM] Target locked: ${version.toUpperCase()}`);
-            document.getElementById('injectBtn').disabled = false;
-            document.getElementById('injectBtn').innerText = "🚀 INJECT (4s)";
-            document.getElementById('injectBtn').classList.remove('pulse');
+            addLog(`[SYSTEM] تم تحديد النسخة: ${version.toUpperCase()}`, 'info');
+            const btn = document.getElementById('injectBtn');
+            btn.disabled = false;
+            btn.innerText = "🚀 الحقن (4 ثوانٍ)";
+            btn.classList.remove('pulse');
         }
 
         function addLog(msg, type = 'normal') {
@@ -261,6 +287,7 @@
             if (type === 'error') line.classList.add('error');
             else if (type === 'success') line.classList.add('success');
             else if (type === 'dark') line.classList.add('dark');
+            else if (type === 'info') line.classList.add('info');
             line.innerText = msg;
             consoleDiv.appendChild(line);
             consoleDiv.scrollTop = consoleDiv.scrollHeight;
@@ -270,18 +297,18 @@
             const btn = document.getElementById('injectBtn');
             btn.disabled = true;
             btn.classList.add('pulse');
-            btn.innerText = `⏳ EXECUTING (4)`;
-            addLog(`[COUNTDOWN] 4 seconds...`, 'dark');
+            btn.innerText = `⏳ التنفيذ (4)`;
+            addLog(`[COUNTDOWN] 4 ثوانٍ...`, 'dark');
             let counter = 4;
             countdownInterval = setInterval(() => {
                 counter--;
                 if (counter > 0) {
                     addLog(`[COUNTDOWN] ${counter}...`, 'dark');
-                    btn.innerText = `⏳ EXECUTING (${counter})`;
+                    btn.innerText = `⏳ التنفيذ (${counter})`;
                 } else {
                     clearInterval(countdownInterval);
-                    addLog(`[COUNTDOWN] 0. // INJECT NOW.`, 'success');
-                    btn.innerText = `⚡ INJECTING...`;
+                    addLog(`[COUNTDOWN] 0. بدء الحقن!`, 'success');
+                    btn.innerText = `⚡ جاري الحقن...`;
                     btn.classList.remove('pulse');
                     performInjection();
                 }
@@ -290,12 +317,12 @@
 
         function performInjection() {
             const url = `https://kararryad.github.io/hosts/${selectedVersion}.html`;
-            addLog(`[SYSTEM] Connecting to payload: ${selectedVersion.toUpperCase()}`);
+            addLog(`[SYSTEM] جاري الاتصال بالملف: ${selectedVersion.toUpperCase()}`, 'info');
             setTimeout(() => {
-                addLog(`[SYSTEM] ✅ PAYLOAD LOADED.`, 'success');
-                addLog(`[SYSTEM] Redirecting...`, 'success');
+                addLog(`[SYSTEM] ✅ تم تحميل الباكيت بنجاح!`, 'success');
+                addLog(`[SYSTEM] يتم التوجيه الآن...`, 'success');
                 window.location.href = url;
-            }, 2000);
+            }, 1500);
         }
     </script>
 </body>
