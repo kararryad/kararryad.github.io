@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>قاعه رياض - 9.00</title>
+</head>
+<body style="background:#000; color:#0f0; font-family:monospace; padding:20px; text-align:center;">
+    <h1 style="color:#f00;">قاعه رياض - 9.00</h1>
+    <p>جاري تحميل الباكيت...</p>
+    <div id="status" style="color:yellow; margin-top:20px;">جاري الاتصال بالملف...</div>
+    <script>
+        const url = 'https://kararryad.github.io/files/900.bin';
+        fetch(url)
+            .then(r => r.arrayBuffer())
+            .then(data => {
+                document.getElementById('status').innerText = "✅ تم الحقن بنجاح!";
+                document.getElementById('status').style.color = "green";
+            })
+            .catch(e => {
+                document.getElementById('status').innerText = "❌ فشل الحقن: " + e.message;
+                document.getElementById('status').style.color = "red";
+            });
+    </script>
+</body>
+</html>
