@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - المستودع الشامل</title>
+    <title>قاعه رياض</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -16,90 +16,52 @@
             padding: 20px;
         }
         .container {
-            max-width: 900px;
+            max-width: 500px;
             width: 100%;
             background: #111;
             border: 1px solid #2a2a2a;
             border-radius: 20px;
             padding: 30px;
-        }
-        .header {
             text-align: center;
-            border-bottom: 1px solid #2a2a2a;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
         }
-        .header .logo {
+        .logo {
             font-size: 3.5rem;
             font-weight: 900;
             color: #cc0000;
             text-shadow: 0 0 20px rgba(204,0,0,0.4);
         }
-        .contact-box {
-            background: #1a1a1a;
-            border: 1px solid #cc0000;
-            padding: 8px 20px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-top: 10px;
-            color: #cc0000;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
         .btn {
+            display: block;
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
             padding: 20px;
+            margin: 15px 0;
             border-radius: 10px;
-            text-align: center;
             text-decoration: none;
             color: #fff;
-            transition: 0.3s;
             font-weight: bold;
-            display: block;
+            transition: 0.3s;
         }
         .btn:hover {
             background: #cc0000;
-            border-color: #cc0000;
             transform: translateY(-3px);
         }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #444;
-            border-top: 1px solid #2a2a2a;
-            padding-top: 20px;
-        }
+        .btn.gold { border-color: #cc0000; }
+        .btn.blue { border-color: #00aaff; }
+        .btn.green { border-color: #00ff00; }
+        .footer { margin-top: 30px; color: #444; border-top: 1px solid #222; padding-top: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">⚡ قاعه رياض</div>
-            <div class="contact-box">📞 07736663121</div>
-        </div>
+        <div class="logo">⚡ قاعه رياض</div>
+        <h3 style="color:#777; margin: 10px 0 20px;">اختر نسخة جهازك</h3>
 
-        <h3 style="text-align:center; color:#777; margin-bottom:10px;">اختر نسخة جهازك</h3>
-        
-        <div class="grid">
-            <a href="https://kararryad.github.io/hosts/672.html" class="btn">💀 6.72</a>
-            <a href="https://kararryad.github.io/hosts/700.html" class="btn">🔰 7.00</a>
-            <a href="https://kararryad.github.io/hosts/750.html" class="btn">🔰 7.50</a>
-            <a href="https://kararryad.github.io/hosts/800.html" class="btn">🔰 8.00</a>
-            <a href="https://kararryad.github.io/hosts/850.html" class="btn">🔰 8.50</a>
-            <a href="https://kararryad.github.io/hosts/900.html" class="btn">🔰 9.00</a>
-            <a href="https://kararryad.github.io/hosts/1000.html" class="btn">🔰 10.00</a>
-            <a href="https://kararryad.github.io/hosts/1050.html" class="btn">🔰 10.50</a>
-            <a href="https://kararryad.github.io/hosts/1100.html" class="btn">🔰 11.00</a>
-        </div>
+        <a href="https://kararryad.github.io/hosts/672.html" class="btn gold">💀 6.72</a>
+        <a href="https://kararryad.github.io/hosts/900.html" class="btn blue">🔰 9.00</a>
+        <a href="https://kararryad.github.io/hosts/1100.html" class="btn green">🔰 11.00</a>
 
-        <div class="footer">
-            &copy; 2026 قاعه رياض
-        </div>
+        <div class="footer">&copy; 2026 قاعه رياض</div>
     </div>
 </body>
 </html>
