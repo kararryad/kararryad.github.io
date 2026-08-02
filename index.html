@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - السينما</title>
+    <title>قاعه رياض - The Godfather</title>
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
-    <!-- استيراد الخطوط الكلاسيكية -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            /* خلفية سينمائية داكنة */
-            background: #000000 url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/The_Godfather_Logo.svg/1200px-The_Godfather_Logo.svg.png') no-repeat center center;
+            /* صورة فيلم The Godfather الحقيقية كخلفية */
+            background: #000 url('https://image.tmdb.org/t/p/original/3bhkrj58Vtu7enYsRolD1fZdja1.jpg') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
             min-height: 100vh;
@@ -21,7 +20,7 @@
             font-family: 'Tajawal', sans-serif;
             padding: 20px;
         }
-        /* طبقة داكنة فوق الصورة لجعل النص واضحاً */
+        /* طبقة سوداء شفافة فوق الصورة لجعل النص واضحاً */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -40,26 +39,22 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
             text-align: center;
         }
-
-        /* الاسم الكبير (بدون ألوان) */
         .main-title {
             font-family: 'Playfair Display', serif;
-            font-size: 4.5rem; /* تم التكبير */
+            font-size: 4rem;
             font-weight: 900;
-            color: #d4af37; /* لون ذهبي داكن */
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
             letter-spacing: 2px;
             margin-bottom: 5px;
         }
         .sub-title {
-            color: #888;
+            color: #ccc;
             font-size: 1rem;
             letter-spacing: 2px;
             margin-bottom: 30px;
             font-family: 'Playfair Display', serif;
         }
-
-        /* الأزرار بدون ألوان زاهية */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -70,7 +65,7 @@
             text-decoration: none;
             padding: 20px 10px;
             border-radius: 15px;
-            background: #111111;
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid #333;
             color: #d4af37;
             font-weight: bold;
@@ -78,57 +73,18 @@
             transition: 0.3s;
             text-align: center;
             font-family: 'Tajawal', sans-serif;
-            box-shadow: 0 5px 0 #000;
         }
         .btn-3d:hover {
-            background: #1a1a1a;
+            background: rgba(212, 175, 55, 0.1);
             border-color: #d4af37;
             transform: translateY(-3px);
             color: #fff;
         }
         .btn-3d .icon { display: block; font-size: 2.2rem; margin-bottom: 8px; }
-        .btn-3d .small { font-size: 0.8rem; color: #666; display: block; }
-
-        /* زر الحقن (مع العد 4 ثوانٍ) */
-        .inject-area {
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 25px;
-        }
-        .btn-inject {
-            width: 100%;
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: 1px solid #d4af37;
-            background: transparent;
-            color: #d4af37;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 2px;
-            box-shadow: 0 5px 0 #000;
-        }
-        .btn-inject:hover { background: #d4af37; color: #000; transform: translateY(-3px); }
-        .btn-inject:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: #222;
-            color: #666;
-            transform: none;
-        }
-        #countdownDisplay {
-            display: block;
-            margin-top: 15px;
-            font-size: 2rem;
-            color: #d4af37;
-            font-family: 'Playfair Display', serif;
-        }
-
+        .btn-3d .small { font-size: 0.8rem; color: #aaa; display: block; }
         .footer {
             margin-top: 30px;
-            color: #444;
+            color: #666;
             font-size: 0.8rem;
             border-top: 1px solid rgba(212, 175, 55, 0.1);
             padding-top: 20px;
@@ -161,39 +117,7 @@
             </a>
         </div>
 
-        <div class="inject-area">
-            <button class="btn-inject" id="injectBtn" onclick="startCountdown()">🚀 تشغيل الحقن (4 ثوانٍ)</button>
-            <div id="countdownDisplay"></div>
-        </div>
-
         <div class="footer">قاعه رياض · مقدمة من بغداد</div>
     </div>
-
-    <script>
-        function startCountdown() {
-            const btn = document.getElementById('injectBtn');
-            const display = document.getElementById('countdownDisplay');
-            btn.disabled = true;
-            
-            let counter = 4;
-            display.innerText = `⏳ ${counter}`;
-            
-            const interval = setInterval(() => {
-                counter--;
-                if (counter > 0) {
-                    display.innerText = `⏳ ${counter}`;
-                } else {
-                    clearInterval(interval);
-                    display.innerText = "✅ جاري الحقن...";
-                    btn.innerText = "⚡ جاري التنفيذ";
-                    
-                    // هنا تضع الرابط الذي تريد التوجه إليه بعد العد
-                    setTimeout(() => {
-                        window.location.href = "https://kararryad.github.io/hosts/900.html";
-                    }, 1000);
-                }
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
