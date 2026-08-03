@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- أكواد الكاتش -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -70,6 +69,7 @@
             background: linear-gradient(45deg, #00ffff, #0066ff, #00ffff);
         }
 
+        /* --- قسم الشعار الدائري --- */
         .header {
             display: flex;
             flex-direction: column;
@@ -78,20 +78,45 @@
             animation: fadeIn 1s ease-out;
         }
         
-        .logo-img {
-            width: 220px;
-            max-width: 85%;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px auto;
-            filter: drop-shadow(0 0 20px rgba(100, 0, 255, 0.4));
-            transition: transform 0.3s ease;
+        .logo-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(100, 0, 255, 0.3), inset 0 0 30px rgba(100, 0, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 0 auto 15px auto;
+            position: relative;
         }
-        .logo-img:hover {
-            transform: scale(1.05);
+        .logo-circle::after {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #ff0080, #ff8c00, #00ffff, #ff0080);
+            z-index: -1;
+            animation: spinBorder 4s linear infinite;
+        }
+        @keyframes spinBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .logo-circle:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 0 50px rgba(100, 0, 255, 0.5);
         }
 
-        /* تم حذف النص المكرر هنا */
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
         .sub-title {
             color: #888;
@@ -103,6 +128,7 @@
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 2px;
         }
+        /* ----------------------- */
 
         .console-box {
             background: rgba(0, 0, 0, 0.7);
@@ -204,12 +230,12 @@
 
     <div class="container" id="mainContainer">
         <div class="header">
-            <!-- اللوجو هو الذي يحمل اسم الموقع الآن -->
-            <img src="https://kararryad.github.io/files/assets/logo.png" 
-                 alt="قاعه رياض" 
-                 class="logo-img">
-                 
-            <!-- تم حذف النص المكرر هنا تماماً -->
+            <!-- اللوجو الدائري -->
+            <div class="logo-circle">
+                <img src="https://kararryad.github.io/files/assets/logo.png" 
+                     alt="قاعه رياض" 
+                     class="logo-img">
+            </div>
                  
             <div class="sub-title">بغداد · قطاع 57</div>
         </div>
