@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - Night King Injector</title>
+    <title>قاعه رياض - الواجهة الكاملة</title>
     <link rel="manifest" href="/manifest.json">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,9 +46,36 @@
         }
         .header h1 { font-size: 1.8rem; color: #cc0000; text-shadow: 0 0 20px rgba(204,0,0,0.3); }
         .status { color: #4ade80; font-size: 1.2rem; font-weight: bold; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #ccc;
+            transition: 0.3s;
+        }
+        .card:hover {
+            border-color: #cc0000;
+            background: rgba(204,0,0,0.1);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+        .card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+        .card .label { font-size: 0.8rem; font-weight: bold; }
+        
         .inject-area {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
         }
         .btn-inject {
             background: #cc0000;
@@ -74,17 +101,11 @@
         }
         .notification {
             display: none;
-            margin-top: 20px;
-            font-size: 1.8rem;
+            margin-top: 15px;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #4ade80;
             text-shadow: 0 0 20px rgba(74,222,128,0.5);
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
         }
         .footer {
             margin-top: 30px;
@@ -104,6 +125,35 @@
             <div class="status">✅ PS4 6.72 FW</div>
         </div>
 
+        <!-- شبكة الأيقونات (جميع الخيارات) -->
+        <div class="grid">
+            <a href="https://kararryad.github.io/hosts/900.html" class="card">
+                <span class="icon">🔰</span>
+                <span class="label">9.00</span>
+            </a>
+            <a href="https://kararryad.github.io/hosts/1100.html" class="card">
+                <span class="icon">🌐</span>
+                <span class="label">11.00</span>
+            </a>
+            <a href="https://kararryad.github.io/files/cheats.zip" class="card">
+                <span class="icon">📦</span>
+                <span class="label">Cheats</span>
+            </a>
+            <a href="https://kararryad.github.io/trainer/" class="card">
+                <span class="icon">🎮</span>
+                <span class="label">Trainer</span>
+            </a>
+            <a href="https://kararryad.github.io/restore/" class="card">
+                <span class="icon">🔄</span>
+                <span class="label">Restore</span>
+            </a>
+            <a href="https://kararryad.github.io/ps5_jb/" class="card">
+                <span class="icon">🔵</span>
+                <span class="label">PS5</span>
+            </a>
+        </div>
+
+        <!-- زر الحقن المباشر -->
         <div class="inject-area">
             <button class="btn-inject" id="injectBtn" onclick="triggerInject()">
                 🚀 تشغيل الحقن
@@ -123,8 +173,7 @@
             btn.innerText = "⏳ Launching payload...";
             notif.style.display = 'none';
 
-            // هنا يتم إرسال الباكيت الفعلي إلى PS4
-            // هذا الكود يعمل فقط عند فتح الموقع على متصفح PS4
+            // محاكاة الحقن (يتم تفعيله فقط عند فتح الموقع على PS4)
             setTimeout(() => {
                 btn.innerText = "✅ HEN Loaded";
                 btn.style.background = "#4ade80";
