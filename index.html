@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
+<he<link rel="manifest" href="/manifest.json">
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered'))
+            .catch(err => console.log('Service Worker not registered', err));
+    }
+</script>ad>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
@@ -328,8 +335,4 @@
     </script>
 </body>
 </html>
-<a href="https://kararryad.github.io/nightkinghost/trainer/" class="btn-select" style="border-color: #ff00ff;">
-    <span style="display:block; font-size:1.5rem;">⚔️</span>
-    مستودع الأدوات الكامل (النسخة المحفوظة)
-</a>
-<a href="https://kararryad.github.io/nightkinghost/trainer/" class="file-item">⚔️ NightKingHost - النسخة المحفوظة</a>
+<a
