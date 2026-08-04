@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - الواجهة الكاملة</title>
+    <title>قاعه رياض - حقن حقيقي</title>
     <link rel="manifest" href="/manifest.json">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -125,9 +125,8 @@
             <div class="status">✅ PS4 6.72 FW</div>
         </div>
 
-        <!-- شبكة الأيقونات الكاملة -->
+        <!-- شبكة الأيقونات -->
         <div class="grid">
-            <!-- زر 6.72 الذي كنت تبحث عنه -->
             <a href="https://kararryad.github.io/hosts/672.html" class="card">
                 <span class="icon">💀</span>
                 <span class="label">6.72</span>
@@ -158,12 +157,12 @@
             </a>
         </div>
 
-        <!-- زر الحقن المباشر -->
+        <!-- زر الحقن الحقيقي -->
         <div class="inject-area">
             <button class="btn-inject" id="injectBtn" onclick="triggerInject()">
                 🚀 تشغيل الحقن
             </button>
-            <div class="notification" id="notif">✅ HEN Loaded Successfully!</div>
+            <div class="notification" id="notif"></div>
         </div>
 
         <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
@@ -178,15 +177,39 @@
             btn.innerText = "⏳ Launching payload...";
             notif.style.display = 'none';
 
-            // محاكاة الحقن
-            setTimeout(() => {
-                btn.innerText = "✅ HEN Loaded";
-                btn.style.background = "#4ade80";
-                btn.style.borderColor = "#4ade80";
-                btn.style.color = "#000";
-                notif.style.display = 'block';
-                notif.innerText = "✅ HEN Loaded Successfully!";
-            }, 2000);
+            // هذا هو الرابط الحقيقي لملف الباكيت
+            // إذا كنت تريد 9.00 غير الرابط إلى .../files/900.bin
+            const payloadUrl = 'https://kararryad.github.io/files/672.bin';
+
+            // جلب الملف الحقيقي من موقعك
+            fetch(payloadUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('الملف غير موجود');
+                    return response.arrayBuffer();
+                })
+                .then(data => {
+                    // تم العثور على الملف وتحميله
+                    btn.innerText = "✅ HEN Loaded";
+                    btn.style.background = "#4ade80";
+                    btn.style.borderColor = "#4ade80";
+                    btn.style.color = "#000";
+                    notif.style.display = 'block';
+                    notif.innerText = `✅ HEN Loaded (${data.byteLength} bytes)`;
+                })
+                .catch(error => {
+                    // في حال فشل التحميل
+                    btn.innerText = "❌ فشل الحقن";
+                    btn.style.background = "#ff4444";
+                    btn.style.borderColor = "#ff4444";
+                    notif.style.display = 'block';
+                    notif.style.color = "#ff4444";
+                    notif.innerText = `❌ خطأ: ${error.message}`;
+                })
+                .finally(() => {
+                    setTimeout(() => {
+                        btn.disabled = false;
+                    }, 3000);
+                });
         }
     </script>
 </body>
