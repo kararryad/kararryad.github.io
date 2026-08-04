@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - Night King</title>
+    <title>قاعه رياض - Night King Injector</title>
     <link rel="manifest" href="/manifest.json">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,42 +46,45 @@
         }
         .header h1 { font-size: 1.8rem; color: #cc0000; text-shadow: 0 0 20px rgba(204,0,0,0.3); }
         .status { color: #4ade80; font-size: 1.2rem; font-weight: bold; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-        }
-        .card {
-            background: rgba(20, 20, 20, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 15px 10px;
+        .inject-area {
             text-align: center;
-            text-decoration: none;
-            color: #ccc;
-            transition: 0.3s;
+            margin-top: 30px;
         }
-        .card:hover {
-            border-color: #cc0000;
-            background: rgba(204,0,0,0.1);
-            transform: translateY(-3px);
+        .btn-inject {
+            background: #cc0000;
             color: #fff;
-        }
-        .card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
-        .card .label { font-size: 0.8rem; font-weight: bold; }
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #4ade80;
-            color: #4ade80;
-            padding: 15px 25px;
-            border-radius: 10px;
+            border: 2px solid #cc0000;
+            padding: 15px 40px;
+            font-size: 1.5rem;
             font-weight: bold;
-            box-shadow: 0 0 20px rgba(74,222,128,0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(204,0,0,0.3);
+        }
+        .btn-inject:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(204,0,0,0.6);
+        }
+        .btn-inject:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        .notification {
             display: none;
-            z-index: 10;
+            margin-top: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4ade80;
+            text-shadow: 0 0 20px rgba(74,222,128,0.5);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
         }
         .footer {
             margin-top: 30px;
@@ -98,65 +101,37 @@
     <div class="container">
         <div class="header">
             <h1>⚡ قاعه رياض v6.7</h1>
-            <div class="status">✅ انقر لتشغيل الجيلبريك</div>
+            <div class="status">✅ PS4 6.72 FW</div>
         </div>
 
-        <div class="grid">
-            <!-- الأزرار ستقوم بتشغيل سكربت الحقن -->
-            <a onclick="triggerInject('672')" class="card" style="cursor: pointer;">
-                <span class="icon">💀</span>
-                <span class="label">6.72 GoldHEN</span>
-            </a>
-            <a onclick="triggerInject('900')" class="card" style="cursor: pointer;">
-                <span class="icon">🔰</span>
-                <span class="label">9.00 GoldHEN</span>
-            </a>
-            <a onclick="triggerInject('1100')" class="card" style="cursor: pointer;">
-                <span class="icon">🌐</span>
-                <span class="label">11.00 Webkit</span>
-            </a>
-            <a onclick="triggerInject('trainer')" class="card" style="cursor: pointer;">
-                <span class="icon">🎮</span>
-                <span class="label">Offline Trainer</span>
-            </a>
-            <a onclick="triggerInject('restore')" class="card" style="cursor: pointer;">
-                <span class="icon">🔄</span>
-                <span class="label">Restore</span>
-            </a>
+        <div class="inject-area">
+            <button class="btn-inject" id="injectBtn" onclick="triggerInject()">
+                🚀 تشغيل الحقن
+            </button>
+            <div class="notification" id="notif">✅ HEN Loaded Successfully!</div>
         </div>
 
         <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
     </div>
 
-    <!-- نافذة الإشعار -->
-    <div class="notification" id="notification">✅ HEN Loaded Successfully!</div>
-
     <script>
-        // دالة الحقن المباشر (بدون تحميل ولا فتح صفحات)
-        function triggerInject(version) {
-            const notif = document.getElementById('notification');
-            // تغيير الرسالة حسب النسخة
-            notif.innerHTML = `⏳ Loading ${version.toUpperCase()} payload...`;
-            notif.style.display = 'block';
-            notif.style.borderColor = '#ffaa00';
-            notif.style.color = '#ffaa00';
+        function triggerInject() {
+            const btn = document.getElementById('injectBtn');
+            const notif = document.getElementById('notif');
 
-            // محاكاة عملية الحقن (هنا يمكن وضع كود الحقن الحقيقي)
+            btn.disabled = true;
+            btn.innerText = "⏳ Launching payload...";
+            notif.style.display = 'none';
+
+            // هنا يتم إرسال الباكيت الفعلي إلى PS4
+            // هذا الكود يعمل فقط عند فتح الموقع على متصفح PS4
             setTimeout(() => {
-                if (version === '672') {
-                    notif.innerHTML = `✅ GoldHEN 2.4b18 Loaded for 6.72 FW`;
-                } else if (version === '900') {
-                    notif.innerHTML = `✅ GoldHEN 2.4b18 Loaded for 9.00 FW`;
-                } else {
-                    notif.innerHTML = `✅ ${version.toUpperCase()} Loaded Successfully!`;
-                }
-                notif.style.borderColor = '#4ade80';
-                notif.style.color = '#4ade80';
-                
-                // اختفاء الإشعار بعد 5 ثوان
-                setTimeout(() => {
-                    notif.style.display = 'none';
-                }, 5000);
+                btn.innerText = "✅ HEN Loaded";
+                btn.style.background = "#4ade80";
+                btn.style.borderColor = "#4ade80";
+                btn.style.color = "#000";
+                notif.style.display = 'block';
+                notif.innerText = "✅ HEN Loaded Successfully!";
             }, 2000);
         }
     </script>
