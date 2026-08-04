@@ -1,122 +1,90 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - لوحة التحكم</title>
+    <title>قاعه رياض - NIGHT KING 6.72 FW</title>
     <link rel="manifest" href="/manifest.json">
     <style>
-        /* إعدادات عامة */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #0a0a0a;
-            background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop');
+            background: #000 url('https://image.tmdb.org/t/p/original/3gW1bE5d9Q0bC1d2e3f4g5h6.jpg') no-repeat center center;
             background-size: cover;
-            background-position: center;
             background-attachment: fixed;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
-        /* طبقة داكنة فوق الخلفية لجعل الأزرار واضحة */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 0;
         }
-
         .container {
             position: relative;
             z-index: 1;
+            width: 100%;
             max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* شريط العنوان */
         .header {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 15px 20px;
-            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(5px);
-            flex-wrap: wrap;
+            color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
         .header h1 {
-            color: #cc0000;
             font-size: 1.8rem;
+            color: #cc0000;
+            text-shadow: 0 0 20px rgba(204,0,0,0.3);
+        }
+        .status {
+            color: #4ade80;
+            font-size: 1.2rem;
             font-weight: bold;
-            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(74,222,128,0.3);
         }
-        .header .links a {
-            color: #aaa;
-            text-decoration: none;
-            margin-left: 15px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-        .header .links a:hover { color: #fff; }
-
-        /* شبكة الأيقونات */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             gap: 15px;
         }
         .card {
-            background: rgba(30, 30, 30, 0.7);
+            background: rgba(20, 20, 20, 0.8);
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: 20px 10px;
+            padding: 15px 10px;
             text-align: center;
             text-decoration: none;
             color: #ccc;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100px;
+            transition: 0.3s;
         }
         .card:hover {
-            background: rgba(204, 0, 0, 0.2);
             border-color: #cc0000;
-            transform: translateY(-5px) scale(1.02);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(204, 0, 0, 0.2);
+            background: rgba(204,0,0,0.1);
+            transform: translateY(-3px);
         }
-        .card .icon {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .card .label {
-            font-size: 0.85rem;
-            font-weight: bold;
-            line-height: 1.2;
-        }
-        .card .sub {
-            font-size: 0.65rem;
-            color: #666;
-            margin-top: 3px;
-        }
-
-        /* التذييل */
+        .card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+        .card .label { font-size: 0.8rem; font-weight: bold; }
         .footer {
             margin-top: 30px;
             color: #555;
             font-size: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 20px;
+            padding-top: 15px;
+            text-align: center;
         }
-
-        /* دعم الكاتش */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js');
         }
@@ -125,88 +93,27 @@
 <body>
     <div class="overlay"></div>
     <div class="container">
-        <!-- شريط العنوان -->
         <div class="header">
-            <h1>⚡ قاعه رياض</h1>
-            <div class="links">
-                <a href="#">الرئيسية</a>
-                <a href="#">حول</a>
-                <a href="#">الدعم</a>
-            </div>
+            <h1>⚡ NIGHT KING v6.7 - 6.72 FW</h1>
+            <div class="status">✅ Pass = 672</div>
         </div>
 
-        <!-- شبكة الأيقونات -->
         <div class="grid">
-            <!-- أدوات PS4 -->
-            <a href="https://kararryad.github.io/672new/" class="card">
-                <span class="icon">💀</span>
-                <span class="label">6.72</span>
-                <span class="sub">GoldHEN</span>
-            </a>
-            <a href="https://kararryad.github.io/hosts/900.html" class="card">
-                <span class="icon">🔰</span>
-                <span class="label">9.00</span>
-                <span class="sub">GoldHEN</span>
-            </a>
-            <a href="https://kararryad.github.io/hosts/1100.html" class="card">
-                <span class="icon">🌐</span>
-                <span class="label">11.00</span>
-                <span class="sub">Webkit</span>
-            </a>
-            <a href="https://kararryad.github.io/trainer/" class="card">
-                <span class="icon">🎮</span>
-                <span class="label">Trainer</span>
-                <span class="sub">Offline Mods</span>
-            </a>
-            <a href="https://kararryad.github.io/restore/" class="card">
-                <span class="icon">🔄</span>
-                <span class="label">Restore</span>
-                <span class="sub">User Guide</span>
-            </a>
-            <a href="https://kararryad.github.io/files/cheats.zip" class="card">
-                <span class="icon">📦</span>
-                <span class="label">Cheats</span>
-                <span class="sub">Pack</span>
-            </a>
-            
-            <!-- أدوات إضافية -->
-            <a href="https://kararryad.github.io/ps5_jb/" class="card">
-                <span class="icon">🔵</span>
-                <span class="label">PS5</span>
-                <span class="sub">3.xx - 4.xx</span>
-            </a>
-            <a href="https://kararryad.github.io/Web-Activator/" class="card">
-                <span class="icon">🔓</span>
-                <span class="label">Web Activator</span>
-                <span class="sub">PSN</span>
-            </a>
-            <a href="https://kararryad.github.io/binloader/" class="card">
-                <span class="icon">📂</span>
-                <span class="label">Binloader</span>
-                <span class="sub">Payloads</span>
-            </a>
-            
-            <!-- روابط خارجية -->
-            <a href="https://t.me/JAILBROKEN_PS4_PS5_UNIVERSAL" target="_blank" class="card">
-                <span class="icon">✈️</span>
-                <span class="label">Telegram</span>
-                <span class="sub">القناة</span>
-            </a>
-            <a href="https://www.youtube.com" target="_blank" class="card">
-                <span class="icon">▶️</span>
-                <span class="label">YouTube</span>
-                <span class="sub">دروس</span>
-            </a>
+            <a href="#" class="card"><span class="icon">🔓</span><span class="label">Jailbreak</span></a>
+            <a href="#" class="card"><span class="icon">🛡️</span><span class="label">GoldHEN 2.4</span></a>
+            <a href="#" class="card"><span class="icon">👑</span><span class="label">Mira</span></a>
+            <a href="#" class="card"><span class="icon">🚫</span><span class="label">Disable Update</span></a>
+            <a href="#" class="card"><span class="icon">🔄</span><span class="label">Enable Update</span></a>
+            <a href="#" class="card"><span class="icon">💾</span><span class="label">DB Backup</span></a>
+            <a href="#" class="card"><span class="icon">📂</span><span class="label">Bin Loader</span></a>
+            <a href="#" class="card"><span class="icon">🌐</span><span class="label">WebRTE</span></a>
+            <a href="#" class="card"><span class="icon">🎮</span><span class="label">GTA V Mod</span></a>
+            <a href="#" class="card"><span class="icon">📲</span><span class="label">Remote Play</span></a>
+            <a href="#" class="card"><span class="icon">🔧</span><span class="label">Debug</span></a>
+            <a href="#" class="card"><span class="icon">⭐</span><span class="label">ToDex</span></a>
         </div>
 
         <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
     </div>
-
-    <script>
-        // تفعيل الكاتش
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js');
-        }
-    </script>
 </body>
 </html>
