@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض - 6.72</title>
+    <!-- أوامر الكاتش القوية للPS4 -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
     <style>
@@ -85,27 +86,8 @@
             btn.innerText = "⏳ جاري الحقن...";
             status.innerText = "⏳ جاري التحميل...";
 
-            // محاولة تحميل الباكيت
-            fetch('https://kararryad.github.io/files/672.bin')
-                .then(response => {
-                    if (!response.ok) throw new Error('الملف غير موجود');
-                    return response.arrayBuffer();
-                })
-                .then(data => {
-                    status.innerText = "✅ تم العثور على الملف!";
-                    btn.innerText = "✅ جاري التنفيذ...";
-                    setTimeout(() => {
-                        status.innerText = "✅ HEN Loaded Successfully!";
-                        btn.style.background = "#4ade80";
-                        btn.innerText = "✅ تم الحقن";
-                    }, 2000);
-                })
-                .catch(error => {
-                    status.innerText = "❌ فشل: " + error.message;
-                    btn.innerText = "❌ إعادة المحاولة";
-                    btn.style.background = "#ff4444";
-                    btn.disabled = false;
-                });
+            // استخدام رابط مباشر لتحميل الباكيت (أكثر أماناً لـ PS4)
+            window.location.href = 'https://kararryad.github.io/files/672.bin';
         }
     </script>
 </body>
