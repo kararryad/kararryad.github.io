@@ -3,118 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض</title>
+    <title>قاعه رياض - لوحة التحكم</title>
     <link rel="manifest" href="/manifest.json">
     <style>
+        /* إعدادات عامة */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #0a0a0a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
             padding: 20px;
         }
+        /* طبقة داكنة فوق الخلفية لجعل الأزرار واضحة */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 0;
+        }
+
         .container {
-            width: 100%;
-            max-width: 500px;
-            background: linear-gradient(135deg, #4ade80, #22d3ee);
-            border-radius: 30px;
-            padding: 30px;
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #000;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        }
-        .logo img { width: 80%; }
-        .subtitle { color: #064e3b; font-size: 1.2rem; margin-bottom: 20px; }
-        
-        .console-box {
-            background: rgba(0, 0, 0, 0.4);
+
+        /* شريط العنوان */
+        .header {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
             border-radius: 15px;
-            padding: 20px;
-            text-align: left;
-            color: #fff;
-            font-family: monospace;
-            margin-bottom: 20px;
-            min-height: 100px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            flex-wrap: wrap;
         }
-        
+        .header h1 {
+            color: #cc0000;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .header .links a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .header .links a:hover { color: #fff; }
+
+        /* شبكة الأيقونات */
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
         }
-        .btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 15px 5px;
-            border-radius: 15px;
-            color: #064e3b;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 1rem;
+        .card {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #ccc;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
         }
-        .btn:hover { transform: scale(1.05); background: rgba(255,255,255,0.4); }
-        .btn.active { background: rgba(255,255,255,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
-
-        .btn-inject {
-            width: 100%;
-            padding: 20px;
-            border-radius: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: none;
-            background: linear-gradient(135deg, #ff0080, #ff8c00);
+        .card:hover {
+            background: rgba(204, 0, 0, 0.2);
+            border-color: #cc0000;
+            transform: translateY(-5px) scale(1.02);
             color: #fff;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(255,0,128,0.3);
+            box-shadow: 0 0 20px rgba(204, 0, 0, 0.2);
         }
-        .btn-inject:hover { transform: scale(1.02); }
-        
-        .footer { color: #064e3b; font-size: 0.8rem; margin-top: 20px; }
-        
+        .card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .card .label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        .card .sub {
+            font-size: 0.65rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        /* التذييل */
+        .footer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+        }
+
+        /* دعم الكاتش */
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js');
         }
     </style>
 </head>
 <body>
-
+    <div class="overlay"></div>
     <div class="container">
-        <div class="logo">
-            <img src="https://kararryad.github.io/files/assets/logo.png" alt="Logo">
+        <!-- شريط العنوان -->
+        <div class="header">
+            <h1>⚡ قاعه رياض</h1>
+            <div class="links">
+                <a href="#">الرئيسية</a>
+                <a href="#">حول</a>
+                <a href="#">الدعم</a>
+            </div>
         </div>
-        <div class="subtitle">بغداد · قطاع 57</div>
 
-        <div class="console-box" id="console">
-            <div>[SYSTEM] واجهة عالية الجودة.</div>
-            <div>[SYSTEM] اختر النسخة للمتابعة.</div>
-        </div>
-
+        <!-- شبكة الأيقونات -->
         <div class="grid">
-            <a href="https://kararryad.github.io/hosts/672.html" class="btn">💀 6.72</a>
-            <a href="https://kararryad.github.io/hosts/900.html" class="btn active">🔰 9.00</a>
-            <a href="https://kararryad.github.io/hosts/1100.html" class="btn">🌐 11.00</a>
+            <!-- أدوات PS4 -->
+            <a href="https://kararryad.github.io/672new/" class="card">
+                <span class="icon">💀</span>
+                <span class="label">6.72</span>
+                <span class="sub">GoldHEN</span>
+            </a>
+            <a href="https://kararryad.github.io/hosts/900.html" class="card">
+                <span class="icon">🔰</span>
+                <span class="label">9.00</span>
+                <span class="sub">GoldHEN</span>
+            </a>
+            <a href="https://kararryad.github.io/hosts/1100.html" class="card">
+                <span class="icon">🌐</span>
+                <span class="label">11.00</span>
+                <span class="sub">Webkit</span>
+            </a>
+            <a href="https://kararryad.github.io/trainer/" class="card">
+                <span class="icon">🎮</span>
+                <span class="label">Trainer</span>
+                <span class="sub">Offline Mods</span>
+            </a>
+            <a href="https://kararryad.github.io/restore/" class="card">
+                <span class="icon">🔄</span>
+                <span class="label">Restore</span>
+                <span class="sub">User Guide</span>
+            </a>
+            <a href="https://kararryad.github.io/files/cheats.zip" class="card">
+                <span class="icon">📦</span>
+                <span class="label">Cheats</span>
+                <span class="sub">Pack</span>
+            </a>
+            
+            <!-- أدوات إضافية -->
+            <a href="https://kararryad.github.io/ps5_jb/" class="card">
+                <span class="icon">🔵</span>
+                <span class="label">PS5</span>
+                <span class="sub">3.xx - 4.xx</span>
+            </a>
+            <a href="https://kararryad.github.io/Web-Activator/" class="card">
+                <span class="icon">🔓</span>
+                <span class="label">Web Activator</span>
+                <span class="sub">PSN</span>
+            </a>
+            <a href="https://kararryad.github.io/binloader/" class="card">
+                <span class="icon">📂</span>
+                <span class="label">Binloader</span>
+                <span class="sub">Payloads</span>
+            </a>
+            
+            <!-- روابط خارجية -->
+            <a href="https://t.me/JAILBROKEN_PS4_PS5_UNIVERSAL" target="_blank" class="card">
+                <span class="icon">✈️</span>
+                <span class="label">Telegram</span>
+                <span class="sub">القناة</span>
+            </a>
+            <a href="https://www.youtube.com" target="_blank" class="card">
+                <span class="icon">▶️</span>
+                <span class="label">YouTube</span>
+                <span class="sub">دروس</span>
+            </a>
         </div>
 
-        <button class="btn-inject" onclick="window.location.href='https://kararryad.github.io/hosts/900.html'">🚀 تشغيل الحقن</button>
-
-        <div class="footer">📍 بغداد - قطاع 57 &copy; 2026</div>
+        <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
     </div>
 
+    <script>
+        // تفعيل الكاتش
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
 </body>
 </html>
