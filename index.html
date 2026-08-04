@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - حقن حقيقي</title>
+    <title>قاعه رياض - حقن PS4</title>
     <link rel="manifest" href="/manifest.json">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -125,7 +125,6 @@
             <div class="status">✅ PS4 6.72 FW</div>
         </div>
 
-        <!-- شبكة الأيقونات -->
         <div class="grid">
             <a href="https://kararryad.github.io/hosts/672.html" class="card">
                 <span class="icon">💀</span>
@@ -157,7 +156,6 @@
             </a>
         </div>
 
-        <!-- زر الحقن الحقيقي -->
         <div class="inject-area">
             <button class="btn-inject" id="injectBtn" onclick="triggerInject()">
                 🚀 تشغيل الحقن
@@ -177,18 +175,36 @@
             btn.innerText = "⏳ Launching payload...";
             notif.style.display = 'none';
 
-            // هذا هو الرابط الحقيقي لملف الباكيت
-            // إذا كنت تريد 9.00 غير الرابط إلى .../files/900.bin
+            // تحديد ما إذا كان الجهاز هاتف أم PS4
+            const isPS4 = navigator.userAgent.includes("PlayStation 4");
+
+            if (!isPS4) {
+                // إذا كان الجهاز هاتفاً
+                btn.innerText = "⚠️ هاتف فقط";
+                btn.style.background = "#ffaa00";
+                btn.style.borderColor = "#ffaa00";
+                notif.style.display = 'block';
+                notif.style.color = "#ffaa00";
+                notif.innerText = "⚠️ هذا الزر يعمل فقط على متصفح PS4.";
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerText = "🚀 تشغيل الحقن";
+                    btn.style.background = "#cc0000";
+                    btn.style.borderColor = "#cc0000";
+                    notif.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // إذا كان الجهاز PS4، يتم تنفيذ الحقن الحقيقي
             const payloadUrl = 'https://kararryad.github.io/files/672.bin';
 
-            // جلب الملف الحقيقي من موقعك
             fetch(payloadUrl)
                 .then(response => {
                     if (!response.ok) throw new Error('الملف غير موجود');
                     return response.arrayBuffer();
                 })
                 .then(data => {
-                    // تم العثور على الملف وتحميله
                     btn.innerText = "✅ HEN Loaded";
                     btn.style.background = "#4ade80";
                     btn.style.borderColor = "#4ade80";
@@ -197,7 +213,6 @@
                     notif.innerText = `✅ HEN Loaded (${data.byteLength} bytes)`;
                 })
                 .catch(error => {
-                    // في حال فشل التحميل
                     btn.innerText = "❌ فشل الحقن";
                     btn.style.background = "#ff4444";
                     btn.style.borderColor = "#ff4444";
