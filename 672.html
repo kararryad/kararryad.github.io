@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض - 6.72</title>
-    <!-- أكواد الكاتش القسري -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
-    <!-- تحميل الملفات مسبقاً لتخزينها في الكاتش -->
     <link rel="preload" href="https://kararryad.github.io/files/672.bin" as="fetch" crossorigin>
     <link rel="preload" href="https://kararryad.github.io/files/bg.jpg" as="image">
     <style>
@@ -61,6 +59,37 @@
             color: #ff00ff;
             text-shadow: 0 0 30px rgba(255,0,255,0.5);
         }
+        .initial-loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .initial-loader .loader-bar {
+            width: 60%;
+            max-width: 500px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .initial-loader .loader-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            transition: width 0.5s;
+        }
+        .initial-loader .loader-text {
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
         .status-area {
             font-size: 2.2rem;
             font-weight: bold;
@@ -70,8 +99,9 @@
             min-height: 80px;
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 2px;
+            display: none;
         }
-        .lock-area { margin: 40px 0; }
+        .lock-area { margin: 40px 0; display: none; }
         .lock-icon {
             display: inline-block;
             font-size: 8rem;
@@ -112,10 +142,15 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-        .footer { margin-top: 50px; color: #555; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; width: 100%; }
+        .footer { margin-top: 50px; color: #555; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; width: 100%; display: none; }
     </style>
 </head>
 <body>
+    <div class="initial-loader" id="initialLoader">
+        <div class="loader-text">⏳ LOADING PAYLOAD...</div>
+        <div class="loader-bar"><div class="fill" id="initialFill"></div></div>
+    </div>
+
     <div class="content">
         <div class="top-bar">
             <div class="title">⚡ قاعه رياض</div>
@@ -132,6 +167,31 @@
     </div>
 
     <script>
+        // تحميل الباكيت فور فتح الصفحة
+        window.addEventListener('load', function() {
+            const initialFill = document.getElementById('initialFill');
+            const initialLoader = document.getElementById('initialLoader');
+            const statusArea = document.getElementById('statusArea');
+            const lockArea = document.querySelector('.lock-area');
+            const footer = document.querySelector('.footer');
+
+            // محاكاة عملية التحميل
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                initialFill.style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        initialLoader.style.display = 'none';
+                        statusArea.style.display = 'block';
+                        lockArea.style.display = 'block';
+                        footer.style.display = 'block';
+                    }, 500);
+                }
+            }, 100);
+        });
+
         let isInjecting = false;
 
         function startInjection() {
@@ -169,7 +229,6 @@
         }
 
         function performRealInjection(lock, status, loader) {
-            // الرابط المطلق للملف لضمان العثور عليه
             const payloadUrl = 'https://kararryad.github.io/files/672.bin';
             
             fetch(payloadUrl)
@@ -178,12 +237,9 @@
                     return response.arrayBuffer();
                 })
                 .then(data => {
-                    // تم العثور على الملف
                     status.innerText = "⏳ WAITING FOR PS4 RESPONSE...";
                     
-                    // محاكاة مراقبة الاستجابة
                     setTimeout(() => {
-                        // إذا لم يستجب PS4، نفترض أن الحقن فشل
                         lock.classList.remove('locked');
                         lock.classList.add('error');
                         lock.innerText = '❌';
@@ -191,10 +247,9 @@
                         loader.style.display = 'none';
                         status.innerText = "❌ HEN INJECTION FAILED! CHECK YOUR SYSTEM!";
                         isInjecting = false;
-                    }, 5000); // 5 ثوانٍ مراقبة
+                    }, 5000);
                 })
                 .catch(error => {
-                    // فشل في العثور على الملف
                     lock.classList.remove('locked');
                     lock.classList.add('error');
                     lock.innerText = '❌';
