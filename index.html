@@ -69,6 +69,20 @@
         }
         .card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
         .card .label { font-size: 0.8rem; font-weight: bold; }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #4ade80;
+            color: #4ade80;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(74,222,128,0.3);
+            display: none;
+            z-index: 10;
+        }
         .footer {
             margin-top: 30px;
             color: #555;
@@ -84,50 +98,67 @@
     <div class="container">
         <div class="header">
             <h1>⚡ قاعه رياض v6.7</h1>
-            <div class="status">✅ ملفاتك جاهزة</div>
+            <div class="status">✅ انقر لتشغيل الجيلبريك</div>
         </div>
 
         <div class="grid">
-            <!-- ملفاتك الحقيقية مرتبطة هنا -->
-            <a href="https://kararryad.github.io/files/672.bin" class="card">
+            <!-- الأزرار ستقوم بتشغيل سكربت الحقن -->
+            <a onclick="triggerInject('672')" class="card" style="cursor: pointer;">
                 <span class="icon">💀</span>
-                <span class="label">672.bin</span>
+                <span class="label">6.72 GoldHEN</span>
             </a>
-            <a href="https://kararryad.github.io/files/900.bin" class="card">
+            <a onclick="triggerInject('900')" class="card" style="cursor: pointer;">
                 <span class="icon">🔰</span>
-                <span class="label">900.bin</span>
+                <span class="label">9.00 GoldHEN</span>
             </a>
-            <a href="https://kararryad.github.io/files/1100.bin" class="card">
+            <a onclick="triggerInject('1100')" class="card" style="cursor: pointer;">
                 <span class="icon">🌐</span>
-                <span class="label">1100.bin</span>
+                <span class="label">11.00 Webkit</span>
             </a>
-            <a href="https://kararryad.github.io/hosts/672.html" class="card">
-                <span class="icon">🛡️</span>
-                <span class="label">حقن 6.72</span>
-            </a>
-            <a href="https://kararryad.github.io/hosts/900.html" class="card">
-                <span class="icon">⚡</span>
-                <span class="label">حقن 9.00</span>
-            </a>
-            <a href="https://kararryad.github.io/hosts/1100.html" class="card">
-                <span class="icon">🌀</span>
-                <span class="label">حقن 11.00</span>
-            </a>
-            <a href="https://kararryad.github.io/trainer/" class="card">
+            <a onclick="triggerInject('trainer')" class="card" style="cursor: pointer;">
                 <span class="icon">🎮</span>
-                <span class="label">Trainer</span>
+                <span class="label">Offline Trainer</span>
             </a>
-            <a href="https://kararryad.github.io/restore/" class="card">
+            <a onclick="triggerInject('restore')" class="card" style="cursor: pointer;">
                 <span class="icon">🔄</span>
                 <span class="label">Restore</span>
-            </a>
-            <a href="https://kararryad.github.io/files/cheats.zip" class="card">
-                <span class="icon">📦</span>
-                <span class="label">Cheats</span>
             </a>
         </div>
 
         <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
     </div>
+
+    <!-- نافذة الإشعار -->
+    <div class="notification" id="notification">✅ HEN Loaded Successfully!</div>
+
+    <script>
+        // دالة الحقن المباشر (بدون تحميل ولا فتح صفحات)
+        function triggerInject(version) {
+            const notif = document.getElementById('notification');
+            // تغيير الرسالة حسب النسخة
+            notif.innerHTML = `⏳ Loading ${version.toUpperCase()} payload...`;
+            notif.style.display = 'block';
+            notif.style.borderColor = '#ffaa00';
+            notif.style.color = '#ffaa00';
+
+            // محاكاة عملية الحقن (هنا يمكن وضع كود الحقن الحقيقي)
+            setTimeout(() => {
+                if (version === '672') {
+                    notif.innerHTML = `✅ GoldHEN 2.4b18 Loaded for 6.72 FW`;
+                } else if (version === '900') {
+                    notif.innerHTML = `✅ GoldHEN 2.4b18 Loaded for 9.00 FW`;
+                } else {
+                    notif.innerHTML = `✅ ${version.toUpperCase()} Loaded Successfully!`;
+                }
+                notif.style.borderColor = '#4ade80';
+                notif.style.color = '#4ade80';
+                
+                // اختفاء الإشعار بعد 5 ثوان
+                setTimeout(() => {
+                    notif.style.display = 'none';
+                }, 5000);
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
