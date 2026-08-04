@@ -1,19 +1,26 @@
+const CACHE_NAME = 'qaa-riad-cache-v1';
+const urlsToCache = [
+    '/',
+    '/index.html',
+    '/files/assets/logo.png',
+    '/files/672.bin',
+    '/files/900.bin',
+    '/hosts/672.html',
+    '/hosts/900.html'
+];
 
-self.addEventListener('install', e => {
-    e.waitUntil(
-        caches.open('ps4-store').then(cache => {
-            return cache.addAll([
-                '/',
-                '/index.html',
-                '/includes/style.css',
-                '/includes/script.js',
-                '/src/main.js'
-            ]);
-        })
+// تثبيت الكاتش وتخزين الملفات
+self.addEventListener('install', event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(urlsToCache))
     );
 });
-self.addEventListener('fetch', e => {
-    e.respondWith(
-        caches.match(e.request).then(response => response || fetch(e.request))
+
+// اعتراض الطلبات وتقديمها من الكاتش إذا كانت موجودة
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => response || fetch(event.request))
     );
 });
