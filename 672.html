@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض - 6.72</title>
+    <!-- أكواد الكاتش القسري لـ PS4 -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
     <style>
@@ -165,7 +166,7 @@
         }
 
         function performRealInjection(lock, status, loader) {
-            // محاولة تحميل الباكيت من موقعك
+            // الرابط المطلق للملف لضمان العثور عليه
             const payloadUrl = 'https://kararryad.github.io/files/672.bin';
             
             fetch(payloadUrl)
@@ -174,19 +175,12 @@
                     return response.arrayBuffer();
                 })
                 .then(data => {
-                    // تم تحميل الباكيت بنجاح
-                    // هنا نبدأ عملية الحقن الحقيقية على PS4
-                    // ملاحظة: هذا الجزء يعمل فقط على متصفح PS4
-                    
-                    // بدء مراقبة نجاح الحقن
+                    // تم العثور على الملف
                     status.innerText = "⏳ WAITING FOR PS4 RESPONSE...";
                     
-                    // محاكاة مراقبة استجابة PS4
-                    // في الواقع، يجب استخدام WebRTE API للاستماع إلى PS4
-                    // سنقوم بمحاكاة العملية بانتظار 10 ثوانٍ
-                    
+                    // محاكاة مراقبة الاستجابة
                     setTimeout(() => {
-                        // في هذه النقطة، إذا لم يحدث أي تغيير، نفترض أن الحقن فشل
+                        // إذا لم يستجب PS4، نفترض أن الحقن فشل
                         lock.classList.remove('locked');
                         lock.classList.add('error');
                         lock.innerText = '❌';
@@ -194,10 +188,10 @@
                         loader.style.display = 'none';
                         status.innerText = "❌ HEN INJECTION FAILED! CHECK YOUR SYSTEM!";
                         isInjecting = false;
-                    }, 10000); // 10 ثوانٍ مراقبة
+                    }, 5000); // 5 ثوانٍ مراقبة
                 })
                 .catch(error => {
-                    // فشل في تحميل الملف من الخادم
+                    // فشل في العثور على الملف
                     lock.classList.remove('locked');
                     lock.classList.add('error');
                     lock.innerText = '❌';
