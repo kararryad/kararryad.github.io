@@ -4,91 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض - 6.72</title>
-    <!-- أوامر الكاتش القوية للPS4 -->
+    <!-- هذه هي أكواد الكاتش القوية التي تطلب من المتصفح حفظ الصفحة -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* تصميم بسيط جداً ليعمل على PS4 */
         body {
-            background: #000 url('https://kararryad.github.io/files/bg.jpg') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
             margin: 0;
         }
-        .content {
-            text-align: center;
-            padding: 20px;
-            max-width: 900px;
-        }
-        .header-text {
+        h1 {
             color: #00ffff;
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-size: 3rem;
             margin-bottom: 10px;
-            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
-            padding-bottom: 10px;
         }
-        .sub-text {
-            color: #ff00ff;
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
         }
-        .btn-inject {
+        .btn {
+            display: inline-block;
             background: #cc0000;
             color: #fff;
-            border: none;
             padding: 20px 60px;
-            font-size: 2rem;
-            font-weight: bold;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(204,0,0,0.3);
-        }
-        .btn-inject:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(204,0,0,0.6); }
-        .btn-inject:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: none; }
-        .status-text {
-            margin-top: 20px;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #00ffff;
-            min-height: 40px;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-top: 30px;
+            transition: 0.3s;
         }
-        .footer { margin-top: 50px; color: #555; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+        .btn:hover {
+            background: #ff0000;
+        }
+        .footer {
+            margin-top: 50px;
+            color: #555;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="header-text">⚡ قاعه رياض</div>
-        <div class="sub-text">6.72 FW - GOLDHEN LOADER</div>
-        
-        <button class="btn-inject" id="injectBtn" onclick="triggerInject()">
-            🚀 تشغيل الحقن
-        </button>
-        
-        <div class="status-text" id="statusText">جاهز</div>
-        
-        <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
-    </div>
-
-    <script>
-        function triggerInject() {
-            const btn = document.getElementById('injectBtn');
-            const status = document.getElementById('statusText');
-
-            btn.disabled = true;
-            btn.innerText = "⏳ جاري الحقن...";
-            status.innerText = "⏳ جاري التحميل...";
-
-            // استخدام رابط مباشر لتحميل الباكيت (أكثر أماناً لـ PS4)
-            window.location.href = 'https://kararryad.github.io/files/672.bin';
-        }
-    </script>
+    <h1>⚡ قاعه رياض</h1>
+    <p>PS4 6.72 FW - GoldHEN Loader</p>
+    
+    <!-- هذا الزر سيقوم بتحميل الملف وتخزينه في الكاتش -->
+    <a href="https://kararryad.github.io/files/672.bin" class="btn">🚀 تحميل الباكيت وتخزينه</a>
+    
+    <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
 </body>
 </html>
