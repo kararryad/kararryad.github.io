@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض - 6.72</title>
     <link rel="manifest" href="/manifest.json">
+   <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered'))
+            .catch(err => console.log('Service Worker not registered', err));
+    }
+   </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
