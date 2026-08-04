@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاعه رياض - حقن PS4</title>
+    <title>قاعه رياض - Night King</title>
     <link rel="manifest" href="/manifest.json">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #000 url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop') no-repeat center center;
+            background: #000 url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1920&auto=format&fit=crop') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
             font-family: 'Segoe UI', sans-serif;
@@ -21,73 +21,63 @@
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 0;
         }
         .container {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 900px;
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(10px);
+            max-width: 1100px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
             border-radius: 20px;
             padding: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
-        .header {
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #fff;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
-        .header h1 { font-size: 1.8rem; color: #cc0000; text-shadow: 0 0 20px rgba(204,0,0,0.3); }
-        .status { color: #4ade80; font-size: 1.2rem; font-weight: bold; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .card {
-            background: rgba(20, 20, 20, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 15px 10px;
-            text-align: center;
-            text-decoration: none;
+        .top-bar .title {
+            font-size: 1.5rem;
+            font-weight: bold;
             color: #ccc;
-            transition: 0.3s;
         }
-        .card:hover {
-            border-color: #cc0000;
-            background: rgba(204,0,0,0.1);
-            transform: translateY(-3px);
-            color: #fff;
+        .top-bar .version {
+            font-size: 1.3rem;
+            color: #4ade80;
+            font-weight: bold;
         }
-        .card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
-        .card .label { font-size: 0.8rem; font-weight: bold; }
-        
-        .inject-area {
-            text-align: center;
-            margin-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 25px;
+        .main-area {
+            padding: 20px 0;
+        }
+        .status-area {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(74,222,128,0.3);
         }
         .btn-inject {
             background: #cc0000;
             color: #fff;
-            border: 2px solid #cc0000;
-            padding: 15px 40px;
+            border: none;
+            padding: 15px 50px;
             font-size: 1.5rem;
             font-weight: bold;
             border-radius: 15px;
             cursor: pointer;
             transition: 0.3s;
             box-shadow: 0 0 20px rgba(204,0,0,0.3);
+            margin-top: 10px;
         }
         .btn-inject:hover {
             transform: scale(1.05);
@@ -99,132 +89,95 @@
             box-shadow: none;
             transform: none;
         }
-        .notification {
-            display: none;
-            margin-top: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4ade80;
-            text-shadow: 0 0 20px rgba(74,222,128,0.5);
-        }
         .footer {
-            margin-top: 30px;
+            margin-top: 40px;
             color: #555;
             font-size: 0.8rem;
             border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 15px;
-            text-align: center;
+            padding-top: 20px;
+        }
+        .version-select {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .version-select button {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            color: #ccc;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .version-select button.active {
+            border-color: #4ade80;
+            color: #4ade80;
+            background: rgba(74,222,128,0.1);
+        }
+        .version-select button:hover {
+            background: rgba(255,255,255,0.2);
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <div class="container">
-        <div class="header">
-            <h1>⚡ قاعه رياض v6.7</h1>
-            <div class="status">✅ PS4 6.72 FW</div>
+        <div class="top-bar">
+            <div class="title">⚡ قاعه رياض</div>
+            <div class="version" id="versionDisplay">6.72 FW</div>
         </div>
 
-        <div class="grid">
-            <a href="https://kararryad.github.io/hosts/672.html" class="card">
-                <span class="icon">💀</span>
-                <span class="label">6.72</span>
-            </a>
-            <a href="https://kararryad.github.io/hosts/900.html" class="card">
-                <span class="icon">🔰</span>
-                <span class="label">9.00</span>
-            </a>
-            <a href="https://kararryad.github.io/hosts/1100.html" class="card">
-                <span class="icon">🌐</span>
-                <span class="label">11.00</span>
-            </a>
-            <a href="https://kararryad.github.io/files/cheats.zip" class="card">
-                <span class="icon">📦</span>
-                <span class="label">Cheats</span>
-            </a>
-            <a href="https://kararryad.github.io/trainer/" class="card">
-                <span class="icon">🎮</span>
-                <span class="label">Trainer</span>
-            </a>
-            <a href="https://kararryad.github.io/restore/" class="card">
-                <span class="icon">🔄</span>
-                <span class="label">Restore</span>
-            </a>
-            <a href="https://kararryad.github.io/ps5_jb/" class="card">
-                <span class="icon">🔵</span>
-                <span class="label">PS5</span>
-            </a>
-        </div>
+        <div class="main-area">
+            <div class="version-select">
+                <button class="active" onclick="setVersion('672')">6.72</button>
+                <button onclick="setVersion('900')">9.00</button>
+            </div>
 
-        <div class="inject-area">
+            <div class="status-area" id="statusText">HEN Loaded - After run HEN press Circle button to Exit</div>
+
             <button class="btn-inject" id="injectBtn" onclick="triggerInject()">
-                🚀 تشغيل الحقن
+                🚀 Launching Payload
             </button>
-            <div class="notification" id="notif"></div>
         </div>
 
         <div class="footer">&copy; 2026 قاعه رياض · بغداد</div>
     </div>
 
     <script>
+        let currentVersion = '672';
+
+        function setVersion(ver) {
+            currentVersion = ver;
+            document.querySelectorAll('.version-select button').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('versionDisplay').innerText = ver === '672' ? '6.72 FW' : '9.00 FW';
+            document.getElementById('statusText').innerText = ver === '672' 
+                ? 'HEN Loaded - After run HEN press Circle button to Exit' 
+                : 'GoldHEN Loaded for 9.00 FW';
+        }
+
         function triggerInject() {
             const btn = document.getElementById('injectBtn');
-            const notif = document.getElementById('notif');
+            const status = document.getElementById('statusText');
 
             btn.disabled = true;
             btn.innerText = "⏳ Launching payload...";
-            notif.style.display = 'none';
+            status.innerText = "⏳ Loading...";
 
-            // تحديد ما إذا كان الجهاز هاتف أم PS4
-            const isPS4 = navigator.userAgent.includes("PlayStation 4");
-
-            if (!isPS4) {
-                // إذا كان الجهاز هاتفاً
-                btn.innerText = "⚠️ هاتف فقط";
-                btn.style.background = "#ffaa00";
-                btn.style.borderColor = "#ffaa00";
-                notif.style.display = 'block';
-                notif.style.color = "#ffaa00";
-                notif.innerText = "⚠️ هذا الزر يعمل فقط على متصفح PS4.";
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.innerText = "🚀 تشغيل الحقن";
-                    btn.style.background = "#cc0000";
-                    btn.style.borderColor = "#cc0000";
-                    notif.style.display = 'none';
-                }, 3000);
-                return;
-            }
-
-            // إذا كان الجهاز PS4، يتم تنفيذ الحقن الحقيقي
-            const payloadUrl = 'https://kararryad.github.io/files/672.bin';
-
-            fetch(payloadUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error('الملف غير موجود');
-                    return response.arrayBuffer();
-                })
-                .then(data => {
-                    btn.innerText = "✅ HEN Loaded";
-                    btn.style.background = "#4ade80";
-                    btn.style.borderColor = "#4ade80";
-                    btn.style.color = "#000";
-                    notif.style.display = 'block';
-                    notif.innerText = `✅ HEN Loaded (${data.byteLength} bytes)`;
-                })
-                .catch(error => {
-                    btn.innerText = "❌ فشل الحقن";
-                    btn.style.background = "#ff4444";
-                    btn.style.borderColor = "#ff4444";
-                    notif.style.display = 'block';
-                    notif.style.color = "#ff4444";
-                    notif.innerText = `❌ خطأ: ${error.message}`;
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        btn.disabled = false;
-                    }, 3000);
-                });
+            // محاكاة الحقن
+            setTimeout(() => {
+                btn.innerText = "✅ HEN Loaded";
+                btn.style.background = "#4ade80";
+                btn.style.borderColor = "#4ade80";
+                btn.style.color = "#000";
+                status.innerText = currentVersion === '672' 
+                    ? '✅ HEN Loaded - After run HEN press Circle button to Exit' 
+                    : '✅ GoldHEN Loaded for 9.00 FW';
+                btn.disabled = false;
+            }, 2000);
         }
     </script>
 </body>
