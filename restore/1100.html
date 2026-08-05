@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قاعه رياض - PS5 11.60 Exploit</title>
-    <!-- أكواد الكاتش للحفظ في المتصفح -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, public, immutable">
     <meta http-equiv="Pragma" content="cache">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: #0a0a0a;
@@ -16,7 +18,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Tajawal', sans-serif;
             padding: 20px;
         }
         .container {
@@ -47,21 +49,36 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .header {
+        /* شعار قاعه رياض النصي */
+        .logo-area {
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-        .header .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
             color: #00ffff;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .header .location {
+        .logo-text span {
+            background: #00ffff;
+            color: #0a0a0a;
+            font-size: 1.8rem;
+            padding: 0 15px;
+            border-radius: 10px;
+        }
+        .location {
             color: #ff00ff;
             font-size: 1.2rem;
             margin-top: 5px;
+            font-family: 'Tajawal', sans-serif;
         }
         .exploit-area {
             text-align: left;
@@ -108,8 +125,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">⚡ قاعه رياض</div>
+        <div class="logo-area">
+            <div class="logo-text">
+                <span>⚡</span> قاعه رياض
+            </div>
             <div class="location">مدينة الصدر · قطاع 57</div>
         </div>
         <div class="exploit-area">
@@ -139,7 +158,7 @@
             log("[SYSTEM] بدء تشغيل سكربت PS5 11.60...");
 
             try {
-                // استخدام eval لتشغيل السكربت الأصلي داخل الصفحة
+                // تشغيل السكربت الأصلي
                 const exploitCode = `
                 "use strict";
 
@@ -370,7 +389,6 @@
                 // تشغيل السكربت
                 eval(exploitCode);
                 
-                // محاولة تشغيل الدالة الرئيسية إذا كانت موجودة
                 if (typeof runFullExploit === 'function') {
                     const result = runFullExploit();
                     if (result) {
@@ -396,4 +414,4 @@
         }
     </script>
 </body>
-  </html>
+</html>
