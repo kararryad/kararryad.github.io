@@ -6,26 +6,32 @@
     <title>قاعه رياض - PS4 Jailbreak</title>
     <link rel="stylesheet" href="includes/style.css">
     <style>
-        /* تعديل بسيط لتنسيق الصورة والعنوان */
-        .header-logo {
+        /* تنسيق قسم الشعار */
+        .header-logo-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            margin-bottom: 10px;
         }
-        .header-logo img {
+        .header-logo-section img {
             width: 200px;
             max-width: 80%;
             height: auto;
-            margin-bottom: 5px;
+            display: block;
             border-radius: 10px;
         }
-        .header-logo .address {
+        .header-logo-section .address {
             font-size: 1.1rem;
             font-weight: bold;
             color: #ff00ff;
-            margin-top: 0px;
+            margin-top: 8px;
             text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+        .header-titles h2 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -33,8 +39,8 @@
 
     <header class="site-header">
         <div class="header-content">
-            <!-- اللوجو الجديد بصيغة jpg -->
-            <div class="header-logo">
+            <!-- هنا سيظهر شعارك بدلاً من شعار نبيل -->
+            <div class="header-logo-section">
                 <img src="includes/logo.jpg" alt="قاعه رياض">
                 <div class="address">مدينة الصدر · قطاع 57</div>
             </div>
